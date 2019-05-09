@@ -3,7 +3,7 @@ import { jsPlumb, jsPlumbUtil } from 'jsplumb';
 import { ChildMixin } from 'ember-composability-tools';
 import { computed, getProperties } from '@ember/object';
 import layout from '../templates/components/jsplumb-node';
-import hbs from 'htmlbars-inline-precompile';
+import { next } from '@ember/runloop';
 
 export default Component.extend(ChildMixin, {
   layout,
@@ -76,6 +76,20 @@ export default Component.extend(ChildMixin, {
   }),
 
   connectorOverlays: computed(function() {
+    const create = (connection) => {
+      const element = this.element
+        .querySelector('[contenteditable')
+        .cloneNode(true);
+
+      element.textContent = connection.id;
+      element.setAttribute('placeholder', 'Enter Label');
+      element.classList.add('jtk-overlay');
+      element.classList.add('aLabel');
+
+      next(() => selectElementContents(element));
+      return element;
+    };
+
     return [
       [ 'Arrow', {
         location: 1,
@@ -83,22 +97,15 @@ export default Component.extend(ChildMixin, {
         length: 14,
         foldback: 0.8
       }],
-      [ 'Label', {
-        label: '',
-        id: 'label',
-        cssClass: 'aLabel'
-      }],
+      // [ 'Label', {
+      //   label: '',
+      //   id: 'label',
+      //   cssClass: 'aLabel'
+      // }],
       ["Custom", {
-        create: function() {
-          return hbs(`{{content-editable
-            value=node.text
-            tagName="span"
-            allowNewlines=false
-            placeholder="Enter Node Label"
-          }}`);
-        },
-        location:0.7,
-        id:"customOverlay"
+        create,
+        location: 0.5,
+        id: "customOverlay"
       }]
     ];
   }),
@@ -139,7 +146,7 @@ export default Component.extend(ChildMixin, {
 
     jsPlumb.makeSource(element, properties, defaults);
 
-    const input = element.querySelector('[contenteditable');
+    const input = element.querySelector('[contenteditable]');
     selectElementContents(input)
   },
   bind() {

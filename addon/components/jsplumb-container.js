@@ -38,14 +38,14 @@ export default Component.extend(ParentMixin, {
       });
     });
 
-    jsPlumb.bind('click', function (connection) {
+    jsPlumb.bind('dblclick', function (connection, e) {
+      if (e.target.hasAttribute('contenteditable')) { return; }
       jsPlumb.deleteConnection(connection);
     });
 
     jsPlumb.bind('connection', function (info) {
-      info.connection
-        .getOverlay('label')
-        .setLabel(info.connection.id);
+      const label = info.connection.getOverlay('label');
+      label && label.setLabel(info.connection.id);
     });
   },
 
