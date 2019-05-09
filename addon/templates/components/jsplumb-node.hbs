@@ -1,0 +1,16 @@
+{{#paper-card class="layout-column layout-align-center-center layout-fill handle"}}
+  {{paper-content class="ep"}}
+
+  {{#paper-content}}
+    {{#if editable}}
+      {{content-editable
+        value=node.text
+        tagName="span"
+        allowNewlines=false
+        placeholder="Enter Node Label"
+      }}
+    {{else}}
+      {{node.text}}
+    {{/if}}
+  {{/paper-content}}
+{{/paper-card}}

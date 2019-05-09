@@ -1,0 +1,38 @@
+.jsplumb-container {
+  min-width: 800px;
+  min-height: 800px;
+  position: relative;
+
+  .jsplumb-node {
+    cursor: move;
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    pointer-events: auto;
+  }
+
+  md-card {
+    position: relative;
+  }
+
+  > md-card {
+    min-width: inherit;
+    min-height: inherit;
+    pointer-events: none;
+  }
+
+  [contenteditable] {
+    cursor: text;
+    display: inline-block;
+    border-bottom: dashed 1px;
+  }
+}
+
+._jsPlumb_drag_select * {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}

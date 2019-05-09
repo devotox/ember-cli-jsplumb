@@ -2,14 +2,14 @@
 
 ## Installation
 
-* `git clone <repository-url>`
-* `cd ember-jsplumb`
+* `git clone https://github.com/devotox/ember-cli-jsplumb`
+* `cd ember-cli-jsplumb`
 * `yarn install`
 
 ## Linting
 
-* `yarn lint:hbs`
 * `yarn lint:js`
+* `yarn lint:hbs`
 * `yarn lint:js --fix`
 
 ## Running tests
