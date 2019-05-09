@@ -1,6 +1,5 @@
 import { jsPlumb } from 'jsplumb';
 import { A } from '@ember/array';
-import { computed } from '@ember/object';
 import Component from '@ember/component';
 import { ParentMixin } from 'ember-composability-tools';
 import layout from '../templates/components/jsplumb-container';

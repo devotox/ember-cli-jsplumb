@@ -42,7 +42,7 @@
     "ember-cli-babel": "7.7.3",
     "ember-cli-htmlbars": "3.0.1",
     "ember-cli-sass": "10.0.0",
-    "jsplumb": "2.9.2"
+    "jsplumb": "2.9.3"
   },
   "devDependencies": {
     "@ember/optional-features": "0.7.0",
