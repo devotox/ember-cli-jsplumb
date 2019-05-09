@@ -3,8 +3,8 @@
 [![Coverage Status](https://codecov.io/gh/devotox/ember-cli-jsplumb/branch/master/graph/badge.svg)](https://codecov.io/gh/devotox/ember-cli-jsplumb)
 [![NPM Version](https://badge.fury.io/js/ember-cli-jsplumb.svg)](http://badge.fury.io/js/ember-cli-jsplumb)
 [![NPM Downloads](https://img.shields.io/npm/dm/ember-cli-jsplumb.svg)](https://www.npmjs.org/package/ember-cli-jsplumb)
-[![Dependency Status](https://david-dm.org/poetic/ember-cli-jsplumb.svg)](https://david-dm.org/poetic/ember-cli-jsplumb)
-[![DevDependency Status](https://david-dm.org/poetic/ember-cli-jsplumb/dev-status.svg)](https://david-dm.org/poetic/ember-cli-jsplumb#info=devDependencies)
+[![Dependency Status](https://david-dm.org/devotox/ember-cli-jsplumb.svg)](https://david-dm.org/devotox/ember-cli-jsplumb)
+[![DevDependency Status](https://david-dm.org/devotox/ember-cli-jsplumb/dev-status.svg)](https://david-dm.org/devotox/ember-cli-jsplumb#info=devDependencies)
 [![Greenkeeper](https://badges.greenkeeper.io/devotox/ember-cli-jsplumb.svg)](https://greenkeeper.io/)
 
 ember-cli-jsplumb

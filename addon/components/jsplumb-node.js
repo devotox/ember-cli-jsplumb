@@ -3,6 +3,7 @@ import { jsPlumb, jsPlumbUtil } from 'jsplumb';
 import { ChildMixin } from 'ember-composability-tools';
 import { computed, getProperties } from '@ember/object';
 import layout from '../templates/components/jsplumb-node';
+import hbs from 'htmlbars-inline-precompile';
 
 export default Component.extend(ChildMixin, {
   layout,
@@ -86,6 +87,18 @@ export default Component.extend(ChildMixin, {
         label: '',
         id: 'label',
         cssClass: 'aLabel'
+      }],
+      ["Custom", {
+        create: function() {
+          return hbs(`{{content-editable
+            value=node.text
+            tagName="span"
+            allowNewlines=false
+            placeholder="Enter Node Label"
+          }}`);
+        },
+        location:0.7,
+        id:"customOverlay"
       }]
     ];
   }),
