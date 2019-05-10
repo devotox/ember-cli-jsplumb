@@ -2,4 +2,8 @@
   {{#each definition.nodes as |node|}}
     {{jsplumb-node node=node}}
   {{/each}}
+
+  {{#each definition.edges as |edge|}}
+    {{jsplumb-edge edge=edge nodes=definition.nodes}}
+  {{/each}}
 {{/paper-card}}

@@ -1,7 +1,11 @@
-import { jsPlumb } from 'jsplumb';
-import { A } from '@ember/array';
+import { inject } from '@ember/service';
+
 import Component from '@ember/component';
+
+import { jsPlumb, jsPlumbUtil } from 'jsplumb';
+
 import { ParentMixin } from 'ember-composability-tools';
+
 import layout from '../templates/components/jsplumb-container';
 
 export default Component.extend(ParentMixin, {
@@ -9,12 +13,34 @@ export default Component.extend(ParentMixin, {
 
   classNames: 'jsplumb-container',
 
-  definition: null,
+  definition: {}, // eslint-disable-line
+
+  jsplumbUtils: inject(),
+
+  init() {
+    this._super(...arguments);
+
+    const definition = this.get('definition');
+
+    const jsplumbUtils = this.get('jsplumbUtils');
+
+    const newDefinition = jsplumbUtils.setupDefinition(definition);
+
+    this.set('definition', newDefinition);
+
+    console.log('plumb', window.temp1 = this);
+
+  },
 
   didInsertElement() {
     this._super(...arguments);
     this.initialize();
     this.bind();
+  },
+
+  willDestroyElement() {
+    this._super(...arguments);
+    this.unbind();
   },
 
   initialize() {
@@ -23,18 +49,22 @@ export default Component.extend(ParentMixin, {
     jsPlumb.setContainer(element);
 
     jsPlumb.recalculateOffsets(element);
+
   },
 
   bind() {
-    const nodes = A(this.get('definition.nodes'));
+    const nodes = this.get('definition.nodes');
 
     jsPlumb.on(this.element, 'dblclick', (e) => {
       if (e.target !== this.element) { return; }
 
+      const id = jsPlumbUtil.uuid();
+
       nodes.pushObject({
-        text: 'New Node',
+        id,
+        top: e.offsetY,
         left: e.offsetX,
-        top: e.offsetY
+        text: `New Node ${id.substring(0, 6)}`
       });
     });
 
@@ -49,6 +79,9 @@ export default Component.extend(ParentMixin, {
     });
   },
 
-  actions: {
+  unbind() {
+    jsPlumb.unbind('dblclick');
+    jsPlumb.unbind('connection');
+    jsPlumb.off(this.element, 'dblclick');
   }
 });
