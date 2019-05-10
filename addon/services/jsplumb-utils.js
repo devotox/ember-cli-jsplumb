@@ -1,3 +1,5 @@
+import { jsPlumb } from 'jsplumb';
+
 import { A } from '@ember/array';
 
 import Service from '@ember/service';
@@ -5,7 +7,6 @@ import Service from '@ember/service';
 import { next } from '@ember/runloop';
 
 import EmberObject, { computed, set, get } from '@ember/object';
-import {jsPlumb} from "jsplumb";
 
 export default Service.extend({
   selectElementContents(element) {
@@ -24,6 +25,19 @@ export default Service.extend({
     set(definition, 'nodes', A(get(definition, 'nodes') || []));
     set(definition, 'edges', A(get(definition, 'edges') || []));
     return EmberObject.create(definition);
+  },
+
+  getNode(id) {
+    const elementDefinitions = jsPlumb.sourceEndpointDefinitions;
+    return elementDefinitions[id].default.def;
+  },
+
+  getConnection(sourceId, targetId) {
+    const connections = jsPlumb.getAllConnections();
+    return connections.find((connection) => {
+      return connection.sourceId === sourceId
+        && connection.targetId === targetId;
+    });
   },
 
   getElement(id) {
@@ -50,7 +64,7 @@ export default Service.extend({
 
   allowLoopback: false,
 
-  uniqueEndpoint: false,
+  uniqueEndpoint: true,
 
   anchor: computed(function() {
     return 'Continuous';
@@ -99,8 +113,6 @@ export default Service.extend({
   }),
 
   connectorOverlays: computed(function() {
-    const editable = this.get('editable');
-
     const arrow = [
       'Arrow', {
         location: 1,
@@ -109,38 +121,12 @@ export default Service.extend({
         foldback: 0.8
       }];
 
-    const label = [
-      'Label', {
-        label: '',
-        id: 'label',
-        cssClass: 'aLabel'
-      }];
-
-    const custom = [
-      'Custom', {
-        location: 0.5,
-        id: 'customOverlay',
-        create: (connection) => {
-          const element = connection.source
-            .querySelector('[contenteditable')
-            .cloneNode(true);
-
-          element.textContent = connection.id;
-          element.setAttribute('placeholder', 'Enter Label');
-          element.classList.add('jtk-overlay');
-          element.classList.add('aLabel');
-
-          // next(() => this.selectElementContents(element));
-          return element;
-        }
-      }];
-
-    return [ arrow, editable ? custom : label];
+    return [ arrow ];
   }),
 
   setupOverlays(edge = {}) {
     const editable = this.get('editable');
-    const edgeLabel = edge.label || edge.data && edge.data.label;
+    const edgeLabel = edge.label;
 
     const arrow = [
       'Arrow', {

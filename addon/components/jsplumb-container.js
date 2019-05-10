@@ -1,3 +1,5 @@
+import { next } from '@ember/runloop';
+
 import { inject } from '@ember/service';
 
 import Component from '@ember/component';
@@ -27,15 +29,13 @@ export default Component.extend(ParentMixin, {
     const newDefinition = jsplumbUtils.setupDefinition(definition);
 
     this.set('definition', newDefinition);
-
-    console.log('plumb', window.temp1 = this);
-
   },
 
   didInsertElement() {
     this._super(...arguments);
     this.initialize();
-    this.bind();
+
+    next(() => this.bind());
   },
 
   willDestroyElement() {
@@ -54,6 +54,9 @@ export default Component.extend(ParentMixin, {
 
   bind() {
     const nodes = this.get('definition.nodes');
+    const edges = this.get('definition.edges');
+
+    const jsplumbUtils = this.get('jsplumbUtils');
 
     jsPlumb.on(this.element, 'dblclick', (e) => {
       if (e.target !== this.element) { return; }
@@ -68,14 +71,33 @@ export default Component.extend(ParentMixin, {
       });
     });
 
-    jsPlumb.bind('dblclick', function (connection, e) {
+    jsPlumb.bind('dblclick', (connection, e) => {
       if (e.target.hasAttribute('contenteditable')) { return; }
       jsPlumb.deleteConnection(connection);
     });
 
-    jsPlumb.bind('connection', function (info) {
-      const label = info.connection.getOverlay('label');
-      label && label.setLabel(info.connection.id);
+    // jsPlumb.bind('connection', (info) => {
+    //   const label = info.connection.getOverlay('label');
+    //   label && label.setLabel(info.connection.id);
+    // });
+
+
+    jsPlumb.bind('beforeDrop', (info) => {
+      const source = jsplumbUtils.getNode(info.sourceId);
+      const target = jsplumbUtils.getNode(info.targetId);
+      const uniqueEndpoint = jsplumbUtils.get('uniqueEndpoint');
+      const connection = jsplumbUtils.getConnection(source.elId, target.elId);
+
+      if (uniqueEndpoint && connection && connection !== info.connection) { return; }
+
+      const edge = {
+        source: source.id,
+        target: target.id,
+        label: 'New Connection'
+      };
+
+      edges.pushObject(edge);
+      this.onConnection && this.onConnection(edge);
     });
   },
 

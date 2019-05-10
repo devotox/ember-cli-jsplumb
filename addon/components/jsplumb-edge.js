@@ -4,9 +4,11 @@ import { inject } from '@ember/service';
 
 import Component from '@ember/component';
 
+import { ChildMixin } from 'ember-composability-tools';
+
 import layout from '../templates/components/jsplumb-edge';
 
-export default Component.extend({
+export default Component.extend(ChildMixin, {
   layout,
 
   edge: {}, // eslint-disable-line

@@ -2,6 +2,7 @@ import Route from '@ember/routing/route';
 
 export default Route.extend({
   setupController() {
+    definition.edges.forEach((edge) => edge.label = edge.data.label);
     this.get('controller').set('definition', definition);
   }
 });
