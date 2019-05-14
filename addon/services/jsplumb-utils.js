@@ -27,19 +27,19 @@ export default Service.extend({
     return EmberObject.create(definition);
   },
 
-  getNode(id) {
+  getNode(id) { // HTML ID
     const elementDefinitions = jsPlumb.sourceEndpointDefinitions;
     return elementDefinitions[id].default.def;
   },
 
-  getEdge(sourceId, targetId, edges) {
+  getEdge(sourceId, targetId, edges) { // Node IDs
     return edges.find((edge) => {
       return edge.source === sourceId
         && edge.target === targetId;
     });
   },
 
-  getConnection(sourceId, targetId) {
+  getConnection(sourceId, targetId) { // HTML IDs
     const connections = jsPlumb.getAllConnections();
     return connections.find((connection) => {
       return connection.sourceId === sourceId
@@ -47,13 +47,13 @@ export default Service.extend({
     });
   },
 
-  getElement(id) {
+  getElement(id) { // Node ID
     const elements = jsPlumb.getManagedElements();
     const elementDefinitions = jsPlumb.sourceEndpointDefinitions;
 
     const [elementID, { default: { def: definition } }]
       = Object.entries(elementDefinitions)
-        .find(([, { default: { def: definition }}]) => {
+        .find(([, { default: { def: definition = {} } = {}} = {}]) => {
           return definition.id === id;
         });
 
@@ -77,6 +77,14 @@ export default Service.extend({
     return 'Continuous';
   }),
 
+  filter: computed(function() {
+    return '.connect-node';
+  }),
+
+  draggableHandle: computed(function() {
+    return '.text-wrapper, .action-wrapper';
+  }),
+
   endpoint: computed(function() {
     return ['Dot', { width: 3, height: 3, radius: 5, fill: 'gray' }]
   }),
@@ -84,11 +92,6 @@ export default Service.extend({
   connector: computed(function(){
     return ['Flowchart', { curviness: 100, cornerRadius: 5 }];
   }),
-
-  filter: computed(function() {
-    return '.ep';
-  }),
-
   dropOptions: computed(function() {
     return { hoverClass: 'dragHover' };
   }),

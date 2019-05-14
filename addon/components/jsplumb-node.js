@@ -15,6 +15,8 @@ export default Component.extend(ChildMixin, {
 
   node: {}, // eslint-disable-line
 
+  nodes: [], // eslint-disable-line
+
   jsplumbUtils: inject(),
 
   classNames: 'jsplumb-node w',
@@ -44,6 +46,8 @@ export default Component.extend(ChildMixin, {
 
     const jsplumbUtils = this.get('jsplumbUtils');
 
+    const handle = jsplumbUtils.get('draggableHandle');
+
     const properties = getProperties(jsplumbUtils, [
       'anchor', 'filter',
       'allowLoopback', 'uniqueEndpoint',
@@ -63,7 +67,7 @@ export default Component.extend(ChildMixin, {
     jsplumbUtils.get('draggable')
       && jsPlumb.draggable(element, {
         containment: true,
-        handle: '.handle'
+        handle
       });
 
     jsPlumb.makeSource(element, properties, {
@@ -85,11 +89,25 @@ export default Component.extend(ChildMixin, {
   },
 
   actions: {
+    editNode() {
+      const node = this.get('node');
+      const nodes = this.get('nodes');
+
+      const jsplumbUtils = this.get('jsplumbUtils');
+      const { element } = jsplumbUtils.getElement(node.id);
+
+      nodes.removeObject(node);
+      jsPlumb.remove(element.el);
+    },
     deleteNode() {
       const node = this.get('node');
       const nodes = this.get('nodes');
-      console.log(this);
+
+      const jsplumbUtils = this.get('jsplumbUtils');
+      const { element } = jsplumbUtils.getElement(node.id);
+
       nodes.removeObject(node);
+      jsPlumb.remove(element.el);
     }
   }
 });

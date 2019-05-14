@@ -12,6 +12,7 @@
   }
 
   md-card {
+    border-radius: 8px;
     position: relative;
   }
 
@@ -26,6 +27,40 @@
     outline: none;
     display: inline-block;
     border-bottom: dashed 1px;
+  }
+
+  .action-wrapper, .text-wrapper {
+    width: 100%;
+    min-width: 3em;
+    min-height: 3em;
+    overflow: hidden;
+    border-radius: 8px;
+  }
+
+  .connect-node, .delete-node, .edit-node {
+    height: 1em;
+    cursor: pointer;
+    overflow: hidden;
+
+    &:hover {
+      filter: contrast(200%) brightness(150%);
+    }
+  }
+
+  .edit-node {
+    color: green;
+  }
+
+  .delete-node {
+    color: red;
+    filter: brightness(75%);
+  }
+
+  .connect-node {
+    &:hover {
+      color: blue;
+      filter: contrast(50%) brightness(50%);
+    }
   }
 }
 

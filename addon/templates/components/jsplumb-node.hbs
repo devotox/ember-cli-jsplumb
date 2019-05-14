@@ -1,10 +1,14 @@
-{{#paper-card class="layout-column layout-align-center-center layout-fill handle"}}
-  {{#paper-content class="layout-row layout-align-center-center action-wrapper"}}
-    {{paper-content class="ep"}}
-    {{paper-content class="delete-node" click=(action "deleteNode")}}
-  {{/paper-content}}
+{{#paper-card class="layout-column layout-align-center-center layout-fill"}}
 
-  {{#paper-content}}
+  {{#if jsplumbUtils.editable}}
+    {{#paper-content class="layout-row layout-align-space-between-center action-wrapper"}}
+      {{paper-icon "edit" class="edit-node" click=(action "editNode")}}
+      {{paper-icon "add_circle" class="connect-node"}}
+      {{paper-icon "remove_circle" class="delete-node" click=(action "deleteNode")}}
+    {{/paper-content}}
+  {{/if}}
+
+  {{#paper-content class="layout-column layout-align-center-center flex-100 text-wrapper"}}
     {{#if jsplumbUtils.editable}}
       {{content-editable
         value=node.text
@@ -16,4 +20,5 @@
       {{node.text}}
     {{/if}}
   {{/paper-content}}
+
 {{/paper-card}}

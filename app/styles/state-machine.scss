@@ -44,34 +44,6 @@
   cursor: pointer;
 }
 
-.action-wrapper {
-  top: 3px;
-  width: 100%;
-  position: absolute;
-}
-
-.ep, .delete-node {
-  width: 1em;
-  height: 1em;
-  cursor: pointer;
-  background-color: orange;
-  box-shadow: 0 0 2px black;
-  transition: box-shadow 0.25s ease-in;
-  -moz-transition: -moz-box-shadow 0.25s ease-in;
-  -webkit-transition: -webkit-box-shadow 0.25s ease-in;
-}
-
-.delete-node {
-  top: 2px;
-  right: 5px;
-  height: 2px;
-  position: absolute;
-  background-color: red;
-}
-
-.ep:hover {
-  box-shadow: 0 0 6px black;
-}
 
 .statemachine-demo .jtk-endpoint {
   z-index: 3;
