@@ -91,13 +91,11 @@ export default Component.extend(ChildMixin, {
   actions: {
     editNode() {
       const node = this.get('node');
-      const nodes = this.get('nodes');
 
       const jsplumbUtils = this.get('jsplumbUtils');
       const { element } = jsplumbUtils.getElement(node.id);
 
-      nodes.removeObject(node);
-      jsPlumb.remove(element.el);
+      this.onEdit && this.onEdit(node, element);
     },
     deleteNode() {
       const node = this.get('node');
@@ -108,6 +106,7 @@ export default Component.extend(ChildMixin, {
 
       nodes.removeObject(node);
       jsPlumb.remove(element.el);
+      this.onRemove && this.onRemove(node, element);
     }
   }
 });

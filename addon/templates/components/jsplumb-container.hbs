@@ -3,6 +3,9 @@
     {{jsplumb-node
       node=node
       nodes=definition.nodes
+      onEdit=definition.actions.node.onEdit
+      onRemove=definition.actions.node.onRemove
+      onConnect=definition.actions.node.onConnect
     }}
   {{/each}}
 
@@ -10,6 +13,9 @@
     {{jsplumb-edge
       edge=edge
       edges=definition.edges
+      onEdit=definition.actions.edge.onEdit
+      onRemove=definition.actions.edge.onRemove
+      onConnect=definition.actions.edge.onConnect
     }}
   {{/each}}
 {{/paper-card}}

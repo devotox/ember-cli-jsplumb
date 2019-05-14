@@ -63,12 +63,15 @@ export default Component.extend(ParentMixin, {
 
       const id = jsPlumbUtil.uuid();
 
-      nodes.pushObject({
+      const node = {
         id,
         top: e.offsetY,
         left: e.offsetX,
-        text: `New Node ${id.substring(0, 6)}`
-      });
+        text: 'New Node'
+      };
+
+      nodes.pushObject(node);
+      this.onCreateNode && this.onCreateNode(node);
     });
 
     jsPlumb.bind('dblclick', (connection, e) => {
