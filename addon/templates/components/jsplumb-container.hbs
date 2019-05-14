@@ -1,9 +1,15 @@
 {{#paper-card class="layout-row layout-fill"}}
   {{#each definition.nodes as |node|}}
-    {{jsplumb-node node=node}}
+    {{jsplumb-node
+      node=node
+      nodes=defintion.nodes
+    }}
   {{/each}}
 
   {{#each definition.edges as |edge|}}
-    {{jsplumb-edge edge=edge}}
+    {{jsplumb-edge
+      edge=edge
+      edges=definition.edges
+    }}
   {{/each}}
 {{/paper-card}}

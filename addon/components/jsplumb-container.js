@@ -76,19 +76,13 @@ export default Component.extend(ParentMixin, {
       jsPlumb.deleteConnection(connection);
     });
 
-    // jsPlumb.bind('connection', (info) => {
-    //   const label = info.connection.getOverlay('label');
-    //   label && label.setLabel(info.connection.id);
-    // });
-
-
     jsPlumb.bind('beforeDrop', (info) => {
       const source = jsplumbUtils.getNode(info.sourceId);
       const target = jsplumbUtils.getNode(info.targetId);
       const uniqueEndpoint = jsplumbUtils.get('uniqueEndpoint');
       const connection = jsplumbUtils.getConnection(source.elId, target.elId);
 
-      if (uniqueEndpoint && connection && connection !== info.connection) { return; }
+      if (uniqueEndpoint && connection && connection !== info.connection) { return false; }
 
       const edge = {
         source: source.id,
@@ -98,6 +92,17 @@ export default Component.extend(ParentMixin, {
 
       edges.pushObject(edge);
       this.onConnection && this.onConnection(edge);
+    });
+
+    jsPlumb.bind('beforeDetach', (info) => {
+      const source = jsplumbUtils.getNode(info.sourceId);
+      const target = jsplumbUtils.getNode(info.targetId);
+      const edge = jsplumbUtils.getEdge(source.id, target.id, edges);
+
+      if (!edge) { return false; }
+
+      edges.removeObject(edge);
+      this.onConnectionDetached && this.onConnectionDetached(edge);
     });
   },
 

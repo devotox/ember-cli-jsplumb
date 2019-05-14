@@ -32,6 +32,13 @@ export default Service.extend({
     return elementDefinitions[id].default.def;
   },
 
+  getEdge(sourceId, targetId, edges) {
+    return edges.find((edge) => {
+      return edge.source === sourceId
+        && edge.target === targetId;
+    });
+  },
+
   getConnection(sourceId, targetId) {
     const connections = jsPlumb.getAllConnections();
     return connections.find((connection) => {

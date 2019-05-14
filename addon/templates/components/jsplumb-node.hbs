@@ -1,5 +1,8 @@
 {{#paper-card class="layout-column layout-align-center-center layout-fill handle"}}
-  {{paper-content class="ep"}}
+  {{#paper-content class="layout-row layout-align-center-center action-wrapper"}}
+    {{paper-content class="ep"}}
+    {{paper-content class="delete-node" click=(action "deleteNode")}}
+  {{/paper-content}}
 
   {{#paper-content}}
     {{#if jsplumbUtils.editable}}

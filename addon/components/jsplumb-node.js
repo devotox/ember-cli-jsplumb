@@ -82,5 +82,14 @@ export default Component.extend(ChildMixin, {
   },
   unbind() {
 
+  },
+
+  actions: {
+    deleteNode() {
+      const node = this.get('node');
+      const nodes = this.get('nodes');
+      console.log(this);
+      nodes.removeObject(node);
+    }
   }
 });
