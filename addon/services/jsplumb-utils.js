@@ -28,11 +28,15 @@ export default Service.extend({
   },
 
   getNode(id) { // HTML ID
+    if (!id){ return; }
+
     const elementDefinitions = jsPlumb.sourceEndpointDefinitions;
     return elementDefinitions[id].default.def;
   },
 
   getEdge(sourceId, targetId, edges) { // Node IDs
+    if (!sourceId || !targetId || !edges) { return; }
+
     return edges.find((edge) => {
       return edge.source === sourceId
         && edge.target === targetId;
@@ -40,6 +44,8 @@ export default Service.extend({
   },
 
   getConnection(sourceId, targetId) { // HTML IDs
+    if (!sourceId || !targetId) { return; }
+
     const connections = jsPlumb.getAllConnections();
     return connections.find((connection) => {
       return connection.sourceId === sourceId
@@ -48,6 +54,8 @@ export default Service.extend({
   },
 
   getElement(id) { // Node ID
+    if (!id){ return; }
+
     const elements = jsPlumb.getManagedElements();
     const elementDefinitions = jsPlumb.sourceEndpointDefinitions;
 

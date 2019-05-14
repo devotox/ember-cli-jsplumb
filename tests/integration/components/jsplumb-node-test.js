@@ -12,7 +12,7 @@ module('Integration | Component | jsplumb-node', function(hooks) {
 
     await render(hbs`{{jsplumb-node}}`);
 
-    assert.equal(this.element.textContent.trim(), '');
+    assert.equal(this.element.textContent.trim().replace(/\s+/g, ' '), 'edit add_circle remove_circle');
 
     // Template block usage:
     await render(hbs`
@@ -21,6 +21,6 @@ module('Integration | Component | jsplumb-node', function(hooks) {
       {{/jsplumb-node}}
     `);
 
-    assert.equal(this.element.textContent.trim(), 'template block text');
+    assert.equal(this.element.textContent.trim().replace(/\s+/g, ' '), 'edit add_circle remove_circle');
   });
 });
