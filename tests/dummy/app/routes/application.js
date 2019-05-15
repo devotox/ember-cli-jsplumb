@@ -7,7 +7,7 @@ export default Route.extend({
 
     setInterval(() => {
       const definition = this.get('controller').get('definition');
-      console.log(definition);
+      console.log(definition); // eslint-disable-line
     }, 3000);
   }
 });
