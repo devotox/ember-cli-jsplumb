@@ -19,13 +19,13 @@ export default Component.extend(ChildMixin, {
 
   jsplumbUtils: inject(),
 
-  classNames: 'jsplumb-node w',
+  classNames: 'jsplumb-node',
 
   classNameBindings: ['nodeType'],
 
   nodeType: computed('node.type', function(){
     const node = this.get('node');
-    return `flowchart-object flowchart-${node.type}`
+    return `node-${node.type}`
   }),
 
   didInsertElement() {
@@ -100,12 +100,13 @@ export default Component.extend(ChildMixin, {
     deleteNode() {
       const node = this.get('node');
       const nodes = this.get('nodes');
+      const edges = this.get('edges');
 
       const jsplumbUtils = this.get('jsplumbUtils');
       const { element } = jsplumbUtils.getElement(node.id);
 
-      nodes.removeObject(node);
       jsPlumb.remove(element.el);
+      jsplumbUtils.removeNode(node, nodes, edges);
       this.onRemove && this.onRemove(node, element);
     }
   }

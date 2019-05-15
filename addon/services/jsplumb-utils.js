@@ -34,6 +34,14 @@ export default Service.extend({
     return elementDefinitions[id].default.def;
   },
 
+  removeNode(node, nodes, edges) {
+    nodes.removeObject(node);
+    edges.filter((edge) => {
+      return edge.source === node.id
+          || edge.target === node.id;
+    }).forEach(edges.removeObject.bind(edges))
+  },
+
   getEdge(sourceId, targetId, edges) { // Node IDs
     if (!sourceId || !targetId || !edges) { return; }
 
@@ -90,7 +98,7 @@ export default Service.extend({
   }),
 
   draggableHandle: computed(function() {
-    return '.text-wrapper, .action-wrapper';
+    return '.text-wrapper, .action-wrapper, .node-wrapper';
   }),
 
   endpoint: computed(function() {
@@ -158,7 +166,7 @@ export default Service.extend({
       'Label', {
         id: 'label',
         label: edgeLabel,
-        cssClass: 'aLabel'
+        cssClass: 'edge-label'
       }];
 
     const custom = [
@@ -173,7 +181,7 @@ export default Service.extend({
           element.textContent = edgeLabel || connection.id;
           element.setAttribute('placeholder', 'Enter Label');
           element.classList.add('jtk-overlay');
-          element.classList.add('aLabel');
+          element.classList.add('edge-label');
 
           next(() => this.selectElementContents(element));
           return element;

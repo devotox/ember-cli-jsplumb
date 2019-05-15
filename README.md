@@ -30,15 +30,26 @@ Usage
 import Route from '@ember/routing/route';
 
 export default Route.extend({
-	actions: {
-	}
+  setupController() {
+    definition.edges.forEach((edge) => edge.label = edge.data.label);
+    this.get('controller').set('definition', definition);
+  }
 });
 ```
 
 ```handlebars
-{{jsplumb
-
+{{jsplumb-container
+  definition=definition
 }}
+{{#paper-content}}
+  {{ember-ace
+    lines=60
+    readOnly=true
+    mode="ace/mode/json"
+    theme="ace/theme/chrome"
+    value=(json-stringify definition)
+  }}
+{{/paper-content}}
 ```
 
 Contributing

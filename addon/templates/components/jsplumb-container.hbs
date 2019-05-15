@@ -3,6 +3,7 @@
     {{jsplumb-node
       node=node
       nodes=definition.nodes
+      edges=definition.edges
       onEdit=definition.actions.node.onEdit
       onRemove=definition.actions.node.onRemove
       onConnect=definition.actions.node.onConnect
@@ -12,6 +13,7 @@
   {{#each definition.edges as |edge|}}
     {{jsplumb-edge
       edge=edge
+      nodes=definition.nodes
       edges=definition.edges
       onEdit=definition.actions.edge.onEdit
       onRemove=definition.actions.edge.onRemove

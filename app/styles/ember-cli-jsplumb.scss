@@ -3,14 +3,6 @@
   min-height: 800px;
   position: relative;
 
-  .jsplumb-node {
-    cursor: move;
-    width: 100px;
-    height: 100px;
-    position: absolute;
-    pointer-events: auto;
-  }
-
   md-card {
     border-radius: 8px;
     position: relative;
@@ -27,6 +19,47 @@
     outline: none;
     display: inline-block;
     border-bottom: dashed 1px;
+  }
+
+  .jsplumb-node {
+    cursor: move;
+    z-index: 4;
+    opacity: 0.8;
+    width: 100px;
+    padding: 16px;
+    height: 100px;
+    font-size: 11px;
+    border-radius: 8px;
+    position: absolute;
+    pointer-events: auto;
+    background-color: white;
+    border: 1px solid #2e6f9a;
+    box-shadow: 2px 2px 19px #e0e0e0;
+    transition: background-color 0.25s ease-in;
+
+    &:hover {
+      color: white;
+      background-color: #5c96bc;
+    }
+  }
+
+  .edge-label {
+    opacity: 0.8;
+    padding: 0.3em;
+    cursor: pointer;
+    border-radius: 0.5em;
+    background-color: white;
+    border: 1px solid #346789;
+    transition: background-color 0.25s ease-in;
+
+    &.jtk-hover {
+      @extend .jtk-source-hover;
+    }
+  }
+
+  .jtk-source-hover, .jtk-target-hover {
+    background-color: #1e8151;
+    color: white;
   }
 
   .action-wrapper, .text-wrapper {
@@ -62,15 +95,20 @@
       filter: contrast(50%) brightness(50%);
     }
   }
-}
 
-._jsPlumb_drag_select, .jtk-drag-select {
-  * {
-    -webkit-touch-callout: none;
-    -webkit-user-select: none;
-    -khtml-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
+
+  .dragHover {
+    border: 2px solid orange;
+  }
+
+  ._jsPlumb_drag_select, .jtk-drag-select {
+    * {
+      -webkit-touch-callout: none;
+      user-select: none;
+    }
+  }
+
+  path, .jtk-endpoint {
+    cursor:pointer;
   }
 }

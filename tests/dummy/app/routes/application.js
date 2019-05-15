@@ -4,6 +4,11 @@ export default Route.extend({
   setupController() {
     definition.edges.forEach((edge) => edge.label = edge.data.label);
     this.get('controller').set('definition', definition);
+
+    setInterval(() => {
+      const definition = this.get('controller').get('definition');
+      console.log(definition);
+    }, 3000);
   }
 });
 

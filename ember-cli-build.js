@@ -5,6 +5,17 @@ const EmberAddon = require('ember-cli/lib/broccoli/ember-addon');
 module.exports = function(defaults) {
   let app = new EmberAddon(defaults, {
     // Add options here
+
+    ace: {
+      themes: ['chrome', 'tomorrow', 'kuroir', 'gruvbox', 'idle_fingers', 'monokai'],
+      modes: ['css', 'handlebars', 'html', 'javascript', 'json', 'kotlin',  'mysql',
+        'plain_text', 'pgsql', 'ruby', 'scss', 'sql', 'sqlserver', 'xml', 'yaml'],
+      workers: ['css', 'handlebars', 'html', 'javascript', 'json', 'kotlin',  'mysql',
+        'plain_text', 'pgsql', 'ruby', 'scss', 'sql', 'sqlserver', 'xml', 'yaml'],
+      exts: ['beautify', 'emmet', 'spellcheck', 'settings_menu', 'whitespace',
+        'modelist', 'searchbox', 'themelist', 'language_tools', 'linking',
+        'elastic_tabstops_lite', 'error_marker', 'keybinding_menu']
+    }
   });
 
   /*
