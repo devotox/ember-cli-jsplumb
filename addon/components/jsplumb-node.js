@@ -4,14 +4,18 @@ import Component from '@ember/component';
 
 import { jsPlumb, jsPlumbUtil } from 'jsplumb';
 
+import { guidFor } from '@ember/object/internals';
+
 import { ChildMixin } from 'ember-composability-tools';
 
 import layout from '../templates/components/jsplumb-node';
 
-import { computed, getProperties, setProperties } from '@ember/object';
+import { getProperties, setProperties } from '@ember/object';
 
 export default Component.extend(ChildMixin, {
   layout,
+
+  tagName: '',
 
   node: {}, // eslint-disable-line
 
@@ -19,17 +23,14 @@ export default Component.extend(ChildMixin, {
 
   jsplumbUtils: inject(),
 
-  classNames: 'jsplumb-node',
-
-  classNameBindings: ['nodeType'],
-
-  nodeType: computed('node.type', function(){
-    const node = this.get('node');
-    return `node-${node.type}`
-  }),
+  init() {
+    this._super(...arguments);
+    this.id = this.id || `${guidFor(this)}-jsplumb-node`;
+  },
 
   didInsertElement() {
     this._super(...arguments);
+    this.setElement();
     this.initialize();
     this.bind();
   },
@@ -39,8 +40,12 @@ export default Component.extend(ChildMixin, {
     this.unbind();
   },
 
+  setElement() {
+    this._element = document.getElementById(this.id);
+  },
+
   initialize() {
-    const element = this.element;
+    const element = this._element;
 
     const node = this.get('node');
 
@@ -91,6 +96,22 @@ export default Component.extend(ChildMixin, {
   },
 
   actions: {
+    resizeNode(_, { width, height }) {
+      const element = this._element;
+      const node = this.get('node');
+
+      setProperties(node, {
+        width, height
+      });
+
+      jsPlumbUtil.sizeElement(
+        element,
+        node.left, node.top,
+        node.width, node.height
+      );
+
+      jsPlumb.revalidate(element);
+    },
     editNode() {
       const node = this.get('node');
 

@@ -4,25 +4,40 @@ import { computed } from '@ember/object';
 
 export default Route.extend({
 
-  definitionString: computed(function(){
+  definitionString: computed('controller.definition.{nodes,edges}', function(){
     const definition = this.get('controller').get('definition');
 
-    console.log(definition); // eslint-disable-line
+    // console.log(definition); // eslint-disable-line
     return JSON.stringify(definition, null, 4);
   }),
 
   setupController() {
-    definition.edges.forEach((edge) => edge.label = edge.data.label);
-    this.get('controller').set('definition', definition);
+
+    this.get('controller').set('definition', transform(definition));
 
     this.get('controller').set('definitionString', this.get('definitionString'));
 
     setInterval(() => {
       this.notifyPropertyChange('definitionString');
       this.get('controller').set('definitionString', this.get('definitionString'));
-    }, 1000);
+    }, 500);
   }
 });
+
+const transform = (definition) => {
+  definition.nodes.forEach((node) => {
+    node.label = node.text;
+    delete node.text;
+  });
+
+  definition.edges.forEach((edge) => {
+    edge.label = edge.data.label;
+    edge.type = edge.data.type;
+    delete edge.data;
+  });
+
+  return definition;
+};
 
 const definition = {
   "nodes": [

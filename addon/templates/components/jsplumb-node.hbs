@@ -1,35 +1,32 @@
-{{#paper-card class="layout-column layout-align-center-center layout-fill"}}
-
-  {{#if jsplumbUtils.editable}}
-    {{#paper-content class="layout-row layout-align-space-between-center action-wrapper"}}
-      {{paper-icon "edit" class="edit-node" click=(action "editNode")}}
-      {{paper-icon "add_circle" class="connect-node"}}
-      {{paper-icon "remove_circle" class="delete-node" click=(action "deleteNode")}}
-    {{/paper-content}}
-  {{/if}}
-
-  {{#paper-content class="layout-column layout-align-center-center flex-100 text-wrapper"}}
-    {{#if jsplumbUtils.editable}}
-      {{content-editable
-        value=node.text
-        tagName="span"
-        allowNewlines=false
-        placeholder="Enter Node Label"
-      }}
-    {{else}}
-      {{node.text}}
-    {{/if}}
-  {{/paper-content}}
-
-{{/paper-card}}
-
 {{#re-sizable
-  width=node.width
-  height=node.height
+  id=id
+  onResize=(action "resizeNode")
+  class=(concat "jsplumb-node " node.type)
+  directions=(array "right" "bottom" "bottomRight")
 }}
+  {{#paper-card class="layout-column layout-align-center-center layout-fill"}}
 
-  <h1>Resize me</h1>
-  <p>
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. …
-  </p>
+    {{#if jsplumbUtils.editable}}
+      {{#paper-content class="layout-row layout-align-space-between-center action-wrapper"}}
+        {{paper-icon "edit" class="edit-node" click=(action "editNode")}}
+        {{paper-icon "add_circle" class="connect-node"}}
+        {{paper-icon "remove_circle" class="delete-node" click=(action "deleteNode")}}
+      {{/paper-content}}
+
+      {{#paper-content class="layout-column layout-align-center-center flex-100 label-wrapper"}}
+        {{content-editable
+          value=node.label
+          tagName="span"
+          allowNewlines=false
+          placeholder="Enter Node Label"
+        }}
+      {{/paper-content}}
+
+    {{else}}
+      {{#paper-content class="layout-column layout-align-center-center flex-100 label-wrapper"}}
+        {{node.label}}
+      {{/paper-content}}
+    {{/if}}
+
+  {{/paper-card}}
 {{/re-sizable}}

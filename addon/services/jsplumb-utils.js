@@ -98,7 +98,7 @@ export default Service.extend({
   }),
 
   draggableHandle: computed(function() {
-    return '.text-wrapper, .action-wrapper, .node-wrapper';
+    return '.label-wrapper, .action-wrapper, .node-wrapper';
   }),
 
   endpoint: computed(function() {

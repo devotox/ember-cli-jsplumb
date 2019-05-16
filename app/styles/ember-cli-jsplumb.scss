@@ -26,10 +26,10 @@
     z-index: 4;
     cursor: move;
     opacity: 0.8;
-    width: 100px;
-    height: 100px;
     padding: 16px;
     font-size: 11px;
+    min-width: 10em;
+    min-height: 10em;
     border-radius: 8px;
     position: absolute;
     pointer-events: auto;
@@ -63,7 +63,7 @@
     color: white;
   }
 
-  .action-wrapper, .text-wrapper {
+  .action-wrapper, .label-wrapper {
     width: 100%;
     min-width: 3em;
     min-height: 3em;

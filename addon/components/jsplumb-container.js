@@ -49,7 +49,6 @@ export default Component.extend(ParentMixin, {
     jsPlumb.setContainer(element);
 
     jsPlumb.recalculateOffsets(element);
-
   },
 
   bind() {
@@ -65,6 +64,8 @@ export default Component.extend(ParentMixin, {
 
       const node = {
         id,
+        width: 110,
+        height: 110,
         top: e.offsetY,
         left: e.offsetX,
         text: 'New Node'
