@@ -2,6 +2,7 @@
   {{#each definition.nodes as |node|}}
     {{jsplumb-node
       node=node
+      definition=definition
       nodes=definition.nodes
       edges=definition.edges
       onEdit=definition.actions.node.onEdit
@@ -13,6 +14,7 @@
   {{#each definition.edges as |edge|}}
     {{jsplumb-edge
       edge=edge
+      definition=definition
       nodes=definition.nodes
       edges=definition.edges
       onEdit=definition.actions.edge.onEdit

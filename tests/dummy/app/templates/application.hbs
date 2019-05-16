@@ -4,14 +4,10 @@
   definition=definition
 }}
 
-<h3>Definition</h3>
-{{#paper-content}}
-  {{ember-ace
-    lines=60
-    readOnly=true
-    mode="ace/mode/json"
-    theme="ace/theme/chrome"
-    update=(action (mut definition))
-    value=(json-stringify definition)
-  }}
-{{/paper-content}}
+{{ember-ace
+  lines=35
+  readOnly=true
+  mode="ace/mode/json"
+  theme="ace/theme/chrome"
+  value=definitionString
+}}

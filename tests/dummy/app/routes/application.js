@@ -1,14 +1,26 @@
 import Route from '@ember/routing/route';
 
+import { computed } from '@ember/object';
+
 export default Route.extend({
+
+  definitionString: computed(function(){
+    const definition = this.get('controller').get('definition');
+
+    console.log(definition); // eslint-disable-line
+    return JSON.stringify(definition, null, 4);
+  }),
+
   setupController() {
     definition.edges.forEach((edge) => edge.label = edge.data.label);
     this.get('controller').set('definition', definition);
 
+    this.get('controller').set('definitionString', this.get('definitionString'));
+
     setInterval(() => {
-      const definition = this.get('controller').get('definition');
-      console.log(definition); // eslint-disable-line
-    }, 3000);
+      this.notifyPropertyChange('definitionString');
+      this.get('controller').set('definitionString', this.get('definitionString'));
+    }, 1000);
   }
 });
 

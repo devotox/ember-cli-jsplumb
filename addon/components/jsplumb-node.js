@@ -6,9 +6,9 @@ import { jsPlumb, jsPlumbUtil } from 'jsplumb';
 
 import { ChildMixin } from 'ember-composability-tools';
 
-import { computed, getProperties } from '@ember/object';
-
 import layout from '../templates/components/jsplumb-node';
+
+import { computed, getProperties, setProperties } from '@ember/object';
 
 export default Component.extend(ChildMixin, {
   layout,
@@ -66,8 +66,10 @@ export default Component.extend(ChildMixin, {
 
     jsplumbUtils.get('draggable')
       && jsPlumb.draggable(element, {
-        containment: true,
-        handle
+        handle, containment: true,
+        stop({ pos: [left, top]}) {
+          setProperties(node, { left, top });
+        }
       });
 
     jsPlumb.makeSource(element, properties, {
