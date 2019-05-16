@@ -3883,6 +3883,14 @@ ember-cli-get-component-path-option@^1.0.0:
   resolved "https://registry.yarnpkg.com/ember-cli-get-component-path-option/-/ember-cli-get-component-path-option-1.0.0.tgz#0d7b595559e2f9050abed804f1d8eff1b08bc771"
   integrity sha1-DXtZVVni+QUKvtgE8djv8bCLx3E=
 
+ember-cli-github-pages@0.2.1:
+  version "0.2.1"
+  resolved "https://registry.yarnpkg.com/ember-cli-github-pages/-/ember-cli-github-pages-0.2.1.tgz#154ade6e76a541eb95b1d62459ef8efddef103e4"
+  integrity sha512-XGv3PfAlKGXC27MyzMk0jgCFoucGLOg40xfMLJKzmu7be7QrKEN8G6UtUhYOZffMpu2t88BQ3uxYIrLyRx/FyQ==
+  dependencies:
+    ember-cli-version-checker "^2.1.0"
+    rsvp "^4.7.0"
+
 ember-cli-htmlbars-inline-precompile@2.1.0, ember-cli-htmlbars-inline-precompile@^2.1.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/ember-cli-htmlbars-inline-precompile/-/ember-cli-htmlbars-inline-precompile-2.1.0.tgz#61b91ff1879d44ae504cadb46fb1f2604995ae08"
@@ -4270,7 +4278,7 @@ ember-invoke-action@^1.5.1:
   dependencies:
     ember-cli-babel "^6.6.0"
 
-ember-lifeline@^4.1.4:
+ember-lifeline@4.1.4:
   version "4.1.4"
   resolved "https://registry.yarnpkg.com/ember-lifeline/-/ember-lifeline-4.1.4.tgz#c552365b862411e56a89d29a9f171fb5bbc98adb"
   integrity sha512-KGOUCWX1OzRFYKpSx907Lo1Qv43veMSHP14Fgn2eLd1xUjoTNTl18k71OA2o9Kc0VvGJMAATOwheQv+p8uW6Nw==
@@ -4311,7 +4319,7 @@ ember-modifier-manager-polyfill@^1.0.3:
     ember-cli-version-checker "^2.1.2"
     ember-compatibility-helpers "^1.2.0"
 
-ember-on-modifier@^0.12.3:
+ember-on-modifier@0.12.3:
   version "0.12.3"
   resolved "https://registry.yarnpkg.com/ember-on-modifier/-/ember-on-modifier-0.12.3.tgz#475e910b16546f9c2c2504b61d48b6570daec273"
   integrity sha512-z4m+C8MFVdZVZ+QLNU5DWoEiXAxZo6262H+4W49dLgz6zuGPW9FdH1fmju6m+/Ry6AnQFjtm0e8/fQpTUi+uaQ==
@@ -4415,10 +4423,17 @@ ember-router-generator@^1.2.3:
   dependencies:
     recast "^0.11.3"
 
-ember-source-channel-url@1.1.0, ember-source-channel-url@^1.0.1, ember-source-channel-url@^1.1.0:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/ember-source-channel-url/-/ember-source-channel-url-1.1.0.tgz#73de5cc6ebc25b2120e932ec1d8f82677bfaf6ef"
-  integrity sha512-y1RVXmyqrdX6zq9ZejpPt7ohKNGuLMBEKaOUyxFWcYAM5gvLuo6xFerwNmXEBbu4e3//GaoasjodXi6Cl+ddUQ==
+ember-source-channel-url@2.0.1:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/ember-source-channel-url/-/ember-source-channel-url-2.0.1.tgz#18b88f8a00b7746e7a456b3551abb3aea18729cc"
+  integrity sha512-YlLUHW9gNvxEaohIj5exykoTZb4xj9ZRTcR4J3svv9S8rjAHJUnHmqC5Fd9onCs+NGxHo7KwR/fDwsfadbDu5Q==
+  dependencies:
+    got "^8.0.1"
+
+ember-source-channel-url@^1.0.1, ember-source-channel-url@^1.1.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/ember-source-channel-url/-/ember-source-channel-url-1.2.0.tgz#77eb9d0889e5f5370e6c70fcb2696c63ff4a34a1"
+  integrity sha512-CLClcHzVf+8GoFk4176R16nwXoel70bd7DKVAY6D8M0m5fJJhbTrAPYpDA0lY8A60HZo9j/s8A8LWiGh1YmdZg==
   dependencies:
     got "^8.0.1"
 
