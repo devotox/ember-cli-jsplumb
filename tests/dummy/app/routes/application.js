@@ -36,6 +36,8 @@ const transform = (definition) => {
     delete edge.data;
   });
 
+  delete definition.groups;
+  delete definition.ports;
   return definition;
 };
 
