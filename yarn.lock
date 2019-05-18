@@ -4228,13 +4228,13 @@ ember-composability-tools@0.0.11, ember-composability-tools@^0.0.11:
     ember-compatibility-helpers "^1.2.0"
     ember-maybe-import-regenerator "^0.1.5"
 
-ember-content-editable@1.0.4:
-  version "1.0.4"
-  resolved "https://registry.yarnpkg.com/ember-content-editable/-/ember-content-editable-1.0.4.tgz#877e7e0524c4fd278b6dbffbdd6f493392fb7e22"
-  integrity sha512-4kzmGXJID3Ni7yoLEL8ZUDcZvCnn0AKcLJpAO3GnwtjozVIvj5hC2MpSCusXBUcfWchmmwE1PxsHf1eocqPXvw==
+ember-content-editable@1.0.5:
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/ember-content-editable/-/ember-content-editable-1.0.5.tgz#7558092e8e5bd1e3dd09d53bad591b11cff4b9c1"
+  integrity sha512-H1yXPPwOObFnETo/fQFZG6s3VA+45+KkhWpTxmkXuWFtL6FeaYbTT+bgQyUtOUZ1PjwhBUQ4httWWi4n7f40ew==
   dependencies:
     coveralls "^3.0.2"
-    ember-cli-babel "^7.1.2"
+    ember-cli-babel "^7.7.3"
 
 ember-css-transitions@^0.1.15:
   version "0.1.16"
