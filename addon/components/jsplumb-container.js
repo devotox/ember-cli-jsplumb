@@ -19,8 +19,8 @@ export default Component.extend(ParentMixin, ChildMixin, {
 
   didInsertElement() {
     this._super(...arguments);
-    this.initialize();
 
+    this.initialize();
     next(() => this.bind());
   },
 

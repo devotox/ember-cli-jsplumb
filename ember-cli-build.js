@@ -5,6 +5,12 @@ const EmberAddon = require('ember-cli/lib/broccoli/ember-addon');
 module.exports = function(defaults) {
   let app = new EmberAddon(defaults, {
     // Add options here
+    sassOptions: {
+      includePaths: [
+        'app/styles',
+        'addon/styles'
+      ]
+    },
 
     ace: {
       themes: ['chrome', 'tomorrow', 'kuroir', 'gruvbox', 'idle_fingers', 'monokai'],

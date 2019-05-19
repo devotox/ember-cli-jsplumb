@@ -56,16 +56,17 @@ export default Component.extend(ParentMixin, {
   },
 
   bind() {
+    this.rerender = this.rerender.bind(this);
     const jsplumbUtils = this.get('jsplumbUtils');
 
-    addObserver(jsplumbUtils, 'editable', this.rerender.bind(this));
-    addObserver(jsplumbUtils, 'draggable', this.rerender.bind(this));
+    addObserver(jsplumbUtils, 'editable', this.rerender);
+    addObserver(jsplumbUtils, 'draggable', this.rerender);
   },
 
   unbind() {
     const jsplumbUtils = this.get('jsplumbUtils');
 
-    removeObserver(jsplumbUtils, 'editable', this.rerender.bind(this));
-    removeObserver(jsplumbUtils, 'draggable', this.rerender.bind(this));
+    removeObserver(jsplumbUtils, 'editable', this.rerender);
+    removeObserver(jsplumbUtils, 'draggable', this.rerender);
   }
 });
