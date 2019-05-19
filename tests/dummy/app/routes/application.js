@@ -32,6 +32,7 @@ const transform = (definition) => {
   definition.edges.forEach((edge) => {
     edge.label = edge.data.label || '';
     edge.type = edge.data.type;
+    delete edge.geometry;
     delete edge.data;
   });
 
