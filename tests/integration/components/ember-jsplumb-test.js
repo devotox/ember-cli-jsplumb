@@ -10,17 +10,17 @@ module('Integration | Component | ember-jsplumb', function(hooks) {
     // Set any properties with this.set('myProperty', 'value');
     // Handle any actions with this.set('myAction', function(val) { ... });
 
-    await render(hbs`<EmberJsplumb />`);
+    await render(hbs`{{ember-jsplumb}}`);
 
     assert.equal(this.element.textContent.trim(), '');
 
     // Template block usage:
     await render(hbs`
-      <EmberJsplumb>
+      {{#ember-jsplumb}}
         template block text
-      </EmberJsplumb>
+      {{/ember-jsplumb}}
     `);
 
-    assert.equal(this.element.textContent.trim(), 'template block text');
+    assert.equal(this.element.textContent.trim(), '');
   });
 });
