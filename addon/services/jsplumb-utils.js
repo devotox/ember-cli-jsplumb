@@ -92,7 +92,7 @@ export default Service.extend({
     });
   },
 
-  editable: false,
+  editable: true,
 
   draggable: true,
 
