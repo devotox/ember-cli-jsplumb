@@ -1,5 +1,7 @@
 import { jsPlumb } from 'jsplumb';
 
+import { next } from '@ember/runloop';
+
 import { inject } from '@ember/service';
 
 import Component from '@ember/component';
@@ -19,21 +21,11 @@ export default Component.extend(ChildMixin, {
 
   didInsertElement() {
     this._super(...arguments);
-
-    jsPlumb.ready(() => {
-      this.initialize();
-      this.bind();
-    });
-  },
-
-  willDestroyElement() {
-    this._super(...arguments);
-    this.unbind();
+    jsPlumb.ready(() => next(this, this.initialize));
   },
 
   initialize() {
     const edge = this.get('edge');
-
     const jsplumbUtils = this.get('jsplumbUtils');
 
     const source = jsplumbUtils.getElement(edge.source);
@@ -44,16 +36,8 @@ export default Component.extend(ChildMixin, {
 
     jsPlumb.connect({
       overlays,
-      source: source.element.el,
-      target: target.element.el
+      source: source.element,
+      target: target.element
     });
-  },
-
-  bind() {
-
-  },
-
-  unbind() {
-
   }
 });

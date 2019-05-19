@@ -1,35 +1,21 @@
-import { next } from '@ember/runloop';
-
 import { inject } from '@ember/service';
 
 import Component from '@ember/component';
 
-import { jsPlumb, jsPlumbUtil } from 'jsplumb';
+import { next } from '@ember/runloop';
 
-import { ParentMixin } from 'ember-composability-tools';
+import { jsPlumb, jsPlumbUtil } from 'jsplumb';
 
 import layout from '../templates/components/jsplumb-container';
 
-export default Component.extend(ParentMixin, {
+import { ParentMixin, ChildMixin } from 'ember-composability-tools';
+
+export default Component.extend(ParentMixin, ChildMixin, {
   layout,
-
-  classNames: 'jsplumb-container',
-
-  definition: {}, // eslint-disable-line
 
   jsplumbUtils: inject(),
 
-  init() {
-    this._super(...arguments);
-
-    const definition = this.get('definition');
-
-    const jsplumbUtils = this.get('jsplumbUtils');
-
-    const newDefinition = jsplumbUtils.setupDefinition(definition);
-
-    this.set('definition', newDefinition);
-  },
+  classNames: 'jsplumb-container',
 
   didInsertElement() {
     this._super(...arguments);
@@ -54,10 +40,9 @@ export default Component.extend(ParentMixin, {
   bind() {
     const nodes = this.get('definition.nodes');
     const edges = this.get('definition.edges');
-
     const jsplumbUtils = this.get('jsplumbUtils');
 
-    jsPlumb.on(this.element, 'dblclick', (e) => {
+    this.onDblClick = (e) => {
       if (e.target !== this.element) { return; }
 
       const id = jsPlumbUtil.uuid();
@@ -68,12 +53,14 @@ export default Component.extend(ParentMixin, {
         height: 110,
         top: e.offsetY,
         left: e.offsetX,
-        text: 'New Node'
+        label: 'New Node'
       };
 
       nodes.pushObject(node);
       this.onCreateNode && this.onCreateNode(node);
-    });
+    };
+
+    jsPlumb.on(this.element, 'dblclick', this.onDblClick);
 
     jsPlumb.bind('dblclick', (connection, e) => {
       if (e.target.hasAttribute('contenteditable')) { return; }
@@ -113,6 +100,6 @@ export default Component.extend(ParentMixin, {
   unbind() {
     jsPlumb.unbind('dblclick');
     jsPlumb.unbind('connection');
-    jsPlumb.off(this.element, 'dblclick');
+    jsPlumb.off(this.element, 'dblclick', this.onDblClick);
   }
 });

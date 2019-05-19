@@ -28,20 +28,14 @@ export default Component.extend(ChildMixin, {
     this.id = this.id || `${guidFor(this)}-jsplumb-node`;
   },
 
+  setElement() {
+    this._element = document.getElementById(this.id);
+  },
+
   didInsertElement() {
     this._super(...arguments);
     this.setElement();
     this.initialize();
-    this.bind();
-  },
-
-  willDestroyElement() {
-    this._super(...arguments);
-    this.unbind();
-  },
-
-  setElement() {
-    this._element = document.getElementById(this.id);
   },
 
   initialize() {
@@ -69,7 +63,8 @@ export default Component.extend(ChildMixin, {
       node.width, node.height
     );
 
-    jsplumbUtils.get('draggable')
+    jsplumbUtils.get('editable')
+      && jsplumbUtils.get('draggable')
       && jsPlumb.draggable(element, {
         handle, containment: true,
         stop({ pos: [left, top]}) {
@@ -87,12 +82,6 @@ export default Component.extend(ChildMixin, {
 
     const input = element.querySelector('[contenteditable]');
     jsplumbUtils.selectElementContents(input);
-  },
-  bind() {
-
-  },
-  unbind() {
-
   },
 
   actions: {
@@ -128,7 +117,7 @@ export default Component.extend(ChildMixin, {
       const jsplumbUtils = this.get('jsplumbUtils');
       const { element } = jsplumbUtils.getElement(node.id);
 
-      jsPlumb.remove(element.el);
+      jsPlumb.remove(element);
       jsplumbUtils.removeNode(node, nodes, edges);
       this.onRemove && this.onRemove(node, element);
     }

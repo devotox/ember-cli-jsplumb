@@ -1,25 +1,26 @@
 {{#paper-card class="layout-row layout-fill"}}
-  {{#each definition.nodes as |node|}}
-    {{jsplumb-node
-      node=node
-      definition=definition
-      nodes=definition.nodes
-      edges=definition.edges
-      onEdit=definition.actions.node.onEdit
-      onRemove=definition.actions.node.onRemove
-      onConnect=definition.actions.node.onConnect
-    }}
-  {{/each}}
-
-  {{#each definition.edges as |edge|}}
-    {{jsplumb-edge
-      edge=edge
-      definition=definition
-      nodes=definition.nodes
-      edges=definition.edges
-      onEdit=definition.actions.edge.onEdit
-      onRemove=definition.actions.edge.onRemove
-      onConnect=definition.actions.edge.onConnect
-    }}
-  {{/each}}
+  {{#unless jsplumbUtils.hideForRerender}}
+    {{#each definition.nodes as |node|}}
+      {{jsplumb-node
+        node=node
+        definition=definition
+        nodes=definition.nodes
+        edges=definition.edges
+        onEdit=definition.actions.node.onEdit
+        onRemove=definition.actions.node.onRemove
+        onConnect=definition.actions.node.onConnect
+      }}
+    {{/each}}
+    {{#each definition.edges as |edge|}}
+      {{jsplumb-edge
+        edge=edge
+        definition=definition
+        nodes=definition.nodes
+        edges=definition.edges
+        onEdit=definition.actions.edge.onEdit
+        onRemove=definition.actions.edge.onRemove
+        onConnect=definition.actions.edge.onConnect
+      }}
+    {{/each}}
+  {{/unless}}
 {{/paper-card}}

@@ -1,9 +1,6 @@
-@import 'ember-paper';
-
-@import 'ember-resizable';
-
 @import 'ember-cli-jsplumb';
 
 .ace_editor {
   margin: 0;
+  border-top: solid 1px paper-color($color-grey, '500');
 }

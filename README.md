@@ -38,7 +38,7 @@ export default Route.extend({
 ```
 
 ```handlebars
-{{jsplumb-container
+{{ember-jsplumb
   definition=definition
 }}
 {{#paper-content}}

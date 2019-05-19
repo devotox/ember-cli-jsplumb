@@ -1,115 +1,13 @@
-.jsplumb-container {
-  min-width: 800px;
-  min-height: 800px;
-  position: relative;
+// Theme
 
-  md-card {
-    border-radius: 8px;
-    position: relative;
-  }
+@import 'addon/styles/theme';
 
-  > md-card {
-    border-radius: 0;
-    min-width: inherit;
-    min-height: inherit;
-    pointer-events: none;
-  }
+// Addon Styles
 
-  [contenteditable] {
-    cursor: text;
-    outline: none;
-    display: inline-block;
-    border-bottom: dashed 1px;
-  }
+@import 'addon/styles/addon';
 
-  .jsplumb-node {
-    z-index: 4;
-    cursor: move;
-    opacity: 0.8;
-    padding: 16px;
-    font-size: 11px;
-    min-width: 10em;
-    min-height: 10em;
-    border-radius: 8px;
-    position: absolute;
-    pointer-events: auto;
-    background-color: white;
-    border: 1px solid #2e6f9a;
-    box-shadow: 2px 2px 19px #e0e0e0;
-    transition: background-color 0.25s ease-in;
+// Ember Addons Styles
 
-    &:hover {
-      color: white;
-      background-color: #5c96bc;
-    }
-  }
+@import 'ember-paper';
 
-  .edge-label {
-    opacity: 0.8;
-    padding: 0.3em;
-    cursor: pointer;
-    border-radius: 0.5em;
-    background-color: white;
-    border: 1px solid #346789;
-    transition: background-color 0.25s ease-in;
-
-    &.jtk-hover {
-      @extend .jtk-source-hover;
-    }
-  }
-
-  .jtk-source-hover, .jtk-target-hover {
-    background-color: #1e8151;
-    color: white;
-  }
-
-  .action-wrapper, .label-wrapper {
-    width: 100%;
-    min-width: 3em;
-    min-height: 3em;
-    overflow: hidden;
-    border-radius: 8px;
-  }
-
-  .connect-node, .delete-node, .edit-node {
-    height: 1em;
-    cursor: pointer;
-    overflow: hidden;
-
-    &:hover {
-      filter: contrast(200%) brightness(150%);
-    }
-  }
-
-  .edit-node {
-    color: green;
-  }
-
-  .delete-node {
-    color: red;
-    filter: brightness(75%);
-  }
-
-  .connect-node {
-    &:hover {
-      color: blue;
-      filter: contrast(50%) brightness(50%);
-    }
-  }
-
-
-  .dragHover {
-    border: 2px solid orange;
-  }
-
-  ._jsPlumb_drag_select, .jtk-drag-select {
-    * {
-      -webkit-touch-callout: none;
-      user-select: none;
-    }
-  }
-
-  path, .jtk-endpoint {
-    cursor:pointer;
-  }
-}
+@import 'ember-resizable';

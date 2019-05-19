@@ -4,7 +4,9 @@ import { A } from '@ember/array';
 
 import Service from '@ember/service';
 
-import { next } from '@ember/runloop';
+import { next, once } from '@ember/runloop';
+
+import { getOwner } from '@ember/application';
 
 import EmberObject, { computed, set, get } from '@ember/object';
 
@@ -64,7 +66,6 @@ export default Service.extend({
   getElement(id) { // Node ID
     if (!id){ return; }
 
-    const elements = jsPlumb.getManagedElements();
     const elementDefinitions = jsPlumb.sourceEndpointDefinitions;
 
     const [elementID, { default: { def: definition } }]
@@ -73,13 +74,25 @@ export default Service.extend({
           return definition.id === id;
         });
 
-    const element = elements[elementID];
+    const element = document.getElementById(elementID);
     definition.elId = elementID;
 
     return { element, definition };
   },
 
-  editable: true,
+  rerender() {
+    jsPlumb.reset();
+
+    once(() => {
+      set(this, 'hideForRerender', true);
+
+      next(this, () => {
+        set(this, 'hideForRerender', false);
+      });
+    });
+  },
+
+  editable: false,
 
   draggable: true,
 
@@ -88,6 +101,8 @@ export default Service.extend({
   allowLoopback: false,
 
   uniqueEndpoint: true,
+
+  hideForRerender: false,
 
   anchor: computed(function() {
     return 'Continuous';
@@ -150,44 +165,46 @@ export default Service.extend({
     return [ arrow ];
   }),
 
-  setupOverlays(edge = {}) {
+  contentEditable(edge) {
+    const owner = getOwner(this);
+
     const editable = this.get('editable');
-    const edgeLabel = edge.label;
 
-    const arrow = [
-      'Arrow', {
-        location: 1,
-        id: 'arrow',
-        length: 14,
-        foldback: 0.8
-      }];
+    const contentEditable = owner
+      .factoryFor('component:content-editable');
 
-    const label = [
-      'Label', {
-        id: 'label',
-        label: edgeLabel,
-        cssClass: 'edge-label'
-      }];
+     const component = contentEditable.create({
+       tagName: 'span',
+       value: edge.label,
+       disabled: !editable,
+       allowNewlines: false,
+       classNames: 'edge-label',
+       placeholder: 'Enter Edge Label',
+       'key-up': () => set(edge, 'label', event.target.innerText)
+    });
 
-    const custom = [
+    const div = document.createElement('div');
+
+    component.didReceiveAttrs();
+    component.appendTo(div);
+
+    return component;
+  },
+
+  setupOverlays(edge = {}) {
+    const [ arrow ] = this.get('connectorOverlays');
+
+    const customLabel = [
       'Custom', {
         location: 0.5,
         id: 'customOverlay',
-        create: (connection) => {
-          const element = connection.source
-            .querySelector('[contenteditable')
-            .cloneNode(true);
-
-          element.textContent = edgeLabel || connection.id;
-          element.setAttribute('placeholder', 'Enter Label');
-          element.classList.add('jtk-overlay');
-          element.classList.add('edge-label');
-
+        create: () => {
           next(() => this.selectElementContents(element));
+          const { element } = this.contentEditable(edge);
           return element;
         }
       }];
 
-    return [ arrow, editable ? custom : label];
+    return [ arrow, customLabel ];
   }
 });
