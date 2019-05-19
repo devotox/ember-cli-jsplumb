@@ -58,8 +58,6 @@ export default Component.extend(ParentMixin, {
   bind() {
     const jsplumbUtils = this.get('jsplumbUtils');
 
-   setTimeout(() => jsplumbUtils.set('editable', true), 1000);
-
     addObserver(jsplumbUtils, 'editable', this.rerender.bind(this));
     addObserver(jsplumbUtils, 'draggable', this.rerender.bind(this));
   },
