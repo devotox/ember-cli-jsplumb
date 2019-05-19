@@ -1,11 +1,34 @@
 <h2 id="title">Ember CLI JS Plumb</h2>
 
+{{#paper-content class="layout-row toggle-wrapper"}}
+  {{#paper-content class="layout-column flex"}}
+    {{#paper-switch
+      value=jsplumbUtils.editable
+      onChange=(action (mut jsplumbUtils.editable))
+    }}
+      Editable
+    {{/paper-switch}}
+  {{/paper-content}}
+
+  {{#paper-content class="layout-column flex"}}
+    {{#paper-switch
+      value=jsplumbUtils.draggable
+      onChange=(action (mut jsplumbUtils.draggable))
+    }}
+      Draggable (also needs to be editable)
+    {{/paper-switch}}
+  {{/paper-content}}
+{{/paper-content}}
+
 {{ember-jsplumb
   definition=definition
+  onEditNode=(action (route-action "onEditNode"))
+  onRemoveNode=(action (route-action "onRemoveNode"))
+  onResizeNode=(action (route-action "onResizeNode"))
 }}
 
 {{ember-ace
-  lines=35
+  lines=30
   readOnly=true
   mode="ace/mode/json"
   theme="ace/theme/chrome"

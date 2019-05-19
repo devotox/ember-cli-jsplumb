@@ -29,27 +29,58 @@ Usage
 ```javascript
 import Route from '@ember/routing/route';
 
+import { computed } from '@ember/object';
+
 export default Route.extend({
+  definitionString: computed('controller.definition.{nodes,edges}', function(){
+    const definition = this.get('controller').get('definition');
+
+    return JSON.stringify(definition, null, 4);
+  }),
+
   setupController() {
-    definition.edges.forEach((edge) => edge.label = edge.data.label);
-    this.get('controller').set('definition', definition);
+
+    this.get('controller').set('definition', transform(definition));
+
+    this.get('controller').set('definitionString', this.get('definitionString'));
+
+    setInterval(() => {
+      this.notifyPropertyChange('definitionString');
+      this.get('controller').set('definitionString', this.get('definitionString'));
+    }, 500);
+  },
+
+  actions: {
+    onEditNode(node) {
+      window.alert(`Editing Node: ${node.id}`);
+    },
+    onRemoveNode(node) {
+      window.alert(`Removing Node: ${node.id}`);
+    },
+    onResizxeNode(node) {
+      // window.alert(`Resizing Node: ${node.id}`);
+    }
   }
 });
 ```
 
 ```handlebars
+<h2 id="title">Ember CLI JS Plumb</h2>
+
 {{ember-jsplumb
   definition=definition
+  onEditNode=(action (route-action "onEditNode"))
+  onRemoveNode=(action (route-action "onRemoveNode"))
+  onResizeNode=(action (route-action "onResizeNode"))
 }}
-{{#paper-content}}
-  {{ember-ace
-    lines=60
-    readOnly=true
-    mode="ace/mode/json"
-    theme="ace/theme/chrome"
-    value=(json-stringify definition)
-  }}
-{{/paper-content}}
+
+{{ember-ace
+  lines=35
+  readOnly=true
+  mode="ace/mode/json"
+  theme="ace/theme/chrome"
+  value=definitionString
+}}
 ```
 
 Contributing

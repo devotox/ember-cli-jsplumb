@@ -1,12 +1,10 @@
 import { jsPlumb } from 'jsplumb';
 
-import { set } from '@ember/object';
+import { next } from '@ember/runloop';
 
 import { inject } from '@ember/service';
 
 import Component from '@ember/component';
-
-import { next, once } from '@ember/runloop';
 
 import { ParentMixin } from 'ember-composability-tools';
 

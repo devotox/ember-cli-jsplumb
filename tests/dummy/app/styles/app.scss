@@ -4,3 +4,9 @@
   margin: 0;
   border-top: solid 1px paper-color($color-grey, '500');
 }
+
+.toggle-wrapper {
+  md-content {
+    padding: 0 2em;
+  }
+}

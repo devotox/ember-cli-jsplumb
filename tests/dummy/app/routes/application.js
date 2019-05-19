@@ -1,18 +1,21 @@
+import { inject } from '@ember/service';
+
 import Route from '@ember/routing/route';
 
 import { computed } from '@ember/object';
 
 export default Route.extend({
+  jsplumbUtils: inject(),
 
   definitionString: computed('controller.definition.{nodes,edges}', function(){
     const definition = this.get('controller').get('definition');
-
     return JSON.stringify(definition, null, 4);
   }),
 
   setupController() {
-
     this.get('controller').set('definition', transform(definition));
+
+    this.get('controller').set('jsplumbUtils', this.get('jsplumbUtils'));
 
     this.get('controller').set('definitionString', this.get('definitionString'));
 
@@ -20,6 +23,18 @@ export default Route.extend({
       this.notifyPropertyChange('definitionString');
       this.get('controller').set('definitionString', this.get('definitionString'));
     }, 500);
+  },
+
+  actions: {
+    onEditNode(node) {
+      window.alert(`Editing Node: ${node.id}`);
+    },
+    onRemoveNode(node) {
+      window.alert(`Removing Node: ${node.id}`);
+    },
+    onResizeNode(/* node */) {
+      // window.alert(`Resizing Node: ${node.id}`);
+    }
   }
 });
 

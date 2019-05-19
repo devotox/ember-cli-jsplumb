@@ -12,6 +12,8 @@ import layout from '../templates/components/jsplumb-node';
 
 import { getProperties, setProperties } from '@ember/object';
 
+const noop = () => {};
+
 export default Component.extend(ChildMixin, {
   layout,
 
@@ -100,6 +102,9 @@ export default Component.extend(ChildMixin, {
       );
 
       jsPlumb.revalidate(element);
+
+      const onResize = this.parentComponent.parentComponent.onResizeNode || noop;
+      onResize(node, element);
     },
     editNode() {
       const node = this.get('node');
@@ -117,7 +122,8 @@ export default Component.extend(ChildMixin, {
         )
       );
 
-      this.onEdit && this.onEdit(node, nodeEdges, { element, connections, definition });
+      const onEdit = this.parentComponent.parentComponent.onEditNode || noop;
+      onEdit(node, element, { edges: nodeEdges, connections, definition });
     },
     deleteNode() {
       const node = this.get('node');
@@ -129,7 +135,9 @@ export default Component.extend(ChildMixin, {
 
       jsPlumb.remove(element);
       jsplumbUtils.removeNode(node, nodes, edges);
-      this.onRemove && this.onRemove(node, element);
+
+      const onRemove = this.parentComponent.parentComponent.onRemoveNode || noop;
+      onRemove(node, element);
     }
   }
 });

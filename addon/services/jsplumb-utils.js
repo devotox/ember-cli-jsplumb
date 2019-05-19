@@ -92,9 +92,9 @@ export default Service.extend({
     });
   },
 
-  editable: true,
+  editable: false,
 
-  draggable: true,
+  draggable: false,
 
   maxConnections: -1,
 
