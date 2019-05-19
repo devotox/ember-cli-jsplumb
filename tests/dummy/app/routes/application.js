@@ -7,7 +7,6 @@ export default Route.extend({
   definitionString: computed('controller.definition.{nodes,edges}', function(){
     const definition = this.get('controller').get('definition');
 
-    // console.log(definition); // eslint-disable-line
     return JSON.stringify(definition, null, 4);
   }),
 
@@ -31,7 +30,7 @@ const transform = (definition) => {
   });
 
   definition.edges.forEach((edge) => {
-    edge.label = edge.data.label || 'None';
+    edge.label = edge.data.label || '';
     edge.type = edge.data.type;
     delete edge.data;
   });
