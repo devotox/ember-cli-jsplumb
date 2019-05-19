@@ -103,11 +103,21 @@ export default Component.extend(ChildMixin, {
     },
     editNode() {
       const node = this.get('node');
+      const edges = this.get('edges');
 
       const jsplumbUtils = this.get('jsplumbUtils');
-      const { element } = jsplumbUtils.getElement(node.id);
+      const { element, definition } = jsplumbUtils.getElement(node.id);
+      const connections = jsPlumb.getConnections({ source: definition.elId });
 
-      this.onEdit && this.onEdit(node, element);
+      const nodeEdges = connections.map(({ sourceId, targetId }) =>
+        jsplumbUtils.getEdge(
+          jsplumbUtils.getNode(sourceId).id,
+          jsplumbUtils.getNode(targetId).id,
+          edges
+        )
+      );
+
+      this.onEdit && this.onEdit(node, nodeEdges, { element, connections, definition });
     },
     deleteNode() {
       const node = this.get('node');
