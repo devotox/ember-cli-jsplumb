@@ -104,7 +104,7 @@ export default Service.extend({
 
   hideForRerender: false,
 
-  colors: computed('editable', function() {
+  colors: computed(function() {
     return {
       gray: '#9e9e9e',
       darkBlue: '#0d47a1',
@@ -113,42 +113,42 @@ export default Service.extend({
     };
   }),
 
-  anchor: computed('editable', function() {
+  anchor: computed(function() {
     return 'Continuous';
   }),
 
-  filter: computed('editable', function() {
+  filter: computed(function() {
     return '.connect-node';
   }),
 
-  draggableHandle: computed('editable', function() {
+  draggableHandle: computed(function() {
     return '.label-wrapper, .action-wrapper, .node-wrapper';
   }),
 
-  endpoint: computed('editable', function() {
+  endpoint: computed(function() {
     const { gray } = this.get('colors');
     return ['Dot', { width: 3, height: 3, radius: 5, fill: gray }]
   }),
 
-  connector: computed('editable', function(){
+  connector: computed(function(){
     return ['Flowchart', { curviness: 100, cornerRadius: 5 }];
   }),
 
-  dropOptions: computed('editable', function() {
+  dropOptions: computed(function() {
     return { hoverClass: 'dragHover' };
   }),
 
-  paintStyle: computed('editable', function(){
+  paintStyle: computed(function(){
     const { gray } = this.get('colors');
     return { fill: gray };
   }),
 
-  hoverPaintStyle: computed('editable', function() {
+  hoverPaintStyle: computed(function() {
     const { lightGreen } = this.get('colors');
     return { stroke: lightGreen, strokeWidth: 5 };
   }),
 
-  connectorStyle: computed('editable', function() {
+  connectorStyle: computed(function() {
     const { darkBlue } = this.get('colors');
     return {
       strokeWidth: 1.25,
@@ -158,7 +158,7 @@ export default Service.extend({
     };
   }),
 
-  connectorHoverPaintStyle: computed('editable', function() {
+  connectorHoverPaintStyle: computed(function() {
     return {
       stroke: 'black',
       strokeWidth: 20,
@@ -167,7 +167,7 @@ export default Service.extend({
     };
   }),
 
-  connectorOverlays: computed('editable', function() {
+  connectorOverlays: computed(function() {
     const arrow = [
       'Arrow', {
         location: 1,
