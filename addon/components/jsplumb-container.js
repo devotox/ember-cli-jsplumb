@@ -42,6 +42,8 @@ export default Component.extend(ParentMixin, ChildMixin, {
     const edges = this.get('definition.edges');
     const jsplumbUtils = this.get('jsplumbUtils');
 
+    if(!jsplumbUtils.get('editable')) { return; }
+
     this.onDblClick = (e) => {
       if (e.target !== this.element) { return; }
 
@@ -101,5 +103,6 @@ export default Component.extend(ParentMixin, ChildMixin, {
     jsPlumb.unbind('dblclick');
     jsPlumb.unbind('connection');
     jsPlumb.off(this.element, 'dblclick', this.onDblClick);
+    return this;
   }
 });

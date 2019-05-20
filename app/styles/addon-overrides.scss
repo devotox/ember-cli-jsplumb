@@ -1,0 +1,43 @@
+.ember-jsplumb {
+  .jsplumb-container {
+    .jsplumb-node {
+      border-color: paper-color($color-blue, '900');
+      box-shadow: 2px 2px 19px paper-color($color-grey, '500');
+
+      &:hover {
+        background-color: paper-color($color-blue, '500');
+      }
+    }
+
+    .edge-label {
+      border-color: paper-color($color-blue, '900');
+
+      &.jtk-hover {
+        @extend .jtk-source-hover;
+      }
+    }
+
+    .delete-node {
+      color: paper-color($color-red, '700');
+    }
+
+    .connect-node {
+      &:hover {
+        color: paper-color($color-blue, '700');
+      }
+    }
+
+    .edit-node {
+      color: paper-color($color-green, '700');
+    }
+
+    .dragHover {
+      border-color: paper-color($color-amber, '700');
+    }
+
+    .jtk-source-hover, .jtk-target-hover {
+      background-color: paper-color($color-green, '500');
+    }
+
+  }
+}

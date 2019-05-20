@@ -2,12 +2,17 @@
 
 @import 'addon/styles/theme';
 
+// Addon Styles
+
+@import 'addon/styles/addon';
+
 // Ember Addons Styles
 
 @import 'ember-paper';
 
 @import 'ember-resizable';
 
+
 // Addon Styles
 
-@import 'addon/styles/addon';
+@import 'addon-overrides';

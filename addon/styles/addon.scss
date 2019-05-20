@@ -20,11 +20,13 @@
       pointer-events: none;
     }
 
+
     [contenteditable] {
       cursor: text;
       outline: none;
       display: inline-block;
-      border-bottom: dashed 1px !important;
+      border-bottom-width: 1px;
+      border-bottom-style: dashed !important;
     }
 
     .jsplumb-node {
@@ -82,7 +84,7 @@
       overflow: hidden;
 
       &:hover {
-        filter: contrast(200%) brightness(150%);
+        filter: contrast(125%) brightness(125%);
       }
     }
 
@@ -92,19 +94,17 @@
 
     .delete-node {
       color: red;
-      filter: brightness(75%);
     }
 
     .connect-node {
       &:hover {
         color: blue;
-        filter: contrast(50%) brightness(50%);
+        filter: contrast(75%) brightness(75%);
       }
     }
 
-
     .dragHover {
-      border: 2px solid orange;
+      border: 1px solid orange;
     }
 
     ._jsPlumb_drag_select, .jtk-drag-select {
@@ -115,7 +115,7 @@
     }
 
     path, .jtk-endpoint {
-      cursor:pointer;
+      cursor: pointer;
     }
   }
 }

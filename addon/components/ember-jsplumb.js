@@ -51,6 +51,9 @@ export default Component.extend(ParentMixin, {
   rerender() {
     const jsplumbUtils = this.get('jsplumbUtils');
     jsplumbUtils.rerender();
+
+    this.childComponents
+      .forEach((child) => child.unbind().bind());
   },
 
   bind() {

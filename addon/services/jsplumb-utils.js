@@ -92,7 +92,7 @@ export default Service.extend({
     });
   },
 
-  editable: false,
+  editable: true,
 
   draggable: false,
 
@@ -103,6 +103,15 @@ export default Service.extend({
   uniqueEndpoint: true,
 
   hideForRerender: false,
+
+  colors: computed('editable', function() {
+    return {
+      gray: '#9e9e9e',
+      darkBlue: '#0d47a1',
+      lightBlue: '#2196f3',
+      lightGreen: '#4caf50'
+    };
+  }),
 
   anchor: computed('editable', function() {
     return 'Continuous';
@@ -117,38 +126,43 @@ export default Service.extend({
   }),
 
   endpoint: computed('editable', function() {
-    return ['Dot', { width: 3, height: 3, radius: 5, fill: 'gray' }]
+    const { gray } = this.get('colors');
+    return ['Dot', { width: 3, height: 3, radius: 5, fill: gray }]
   }),
 
   connector: computed('editable', function(){
     return ['Flowchart', { curviness: 100, cornerRadius: 5 }];
   }),
+
   dropOptions: computed('editable', function() {
     return { hoverClass: 'dragHover' };
   }),
 
   paintStyle: computed('editable', function(){
-    return { fill: 'gray' };
+    const { gray } = this.get('colors');
+    return { fill: gray };
   }),
 
   hoverPaintStyle: computed('editable', function() {
-    return { stroke: '#1e8151', strokeWidth: 5 };
+    const { lightGreen } = this.get('colors');
+    return { stroke: lightGreen, strokeWidth: 5 };
   }),
 
   connectorStyle: computed('editable', function() {
+    const { darkBlue } = this.get('colors');
     return {
-      strokeWidth: 2,
+      strokeWidth: 1.25,
       outlineWidth: 4,
-      stroke: '#5c96bc',
+      stroke: darkBlue,
       outlineStroke: 'transparent'
     };
   }),
 
   connectorHoverPaintStyle: computed('editable', function() {
     return {
+      stroke: 'black',
       strokeWidth: 20,
       outlineWidth: 20,
-      stroke: 'black',
       outlineStroke: 'transparent'
     };
   }),
