@@ -104,38 +104,38 @@ export default Service.extend({
 
   hideForRerender: false,
 
-  anchor: computed(function() {
+  anchor: computed('editable', function() {
     return 'Continuous';
   }),
 
-  filter: computed(function() {
+  filter: computed('editable', function() {
     return '.connect-node';
   }),
 
-  draggableHandle: computed(function() {
+  draggableHandle: computed('editable', function() {
     return '.label-wrapper, .action-wrapper, .node-wrapper';
   }),
 
-  endpoint: computed(function() {
+  endpoint: computed('editable', function() {
     return ['Dot', { width: 3, height: 3, radius: 5, fill: 'gray' }]
   }),
 
-  connector: computed(function(){
+  connector: computed('editable', function(){
     return ['Flowchart', { curviness: 100, cornerRadius: 5 }];
   }),
-  dropOptions: computed(function() {
+  dropOptions: computed('editable', function() {
     return { hoverClass: 'dragHover' };
   }),
 
-  paintStyle: computed(function(){
+  paintStyle: computed('editable', function(){
     return { fill: 'gray' };
   }),
 
-  hoverPaintStyle: computed(function() {
+  hoverPaintStyle: computed('editable', function() {
     return { stroke: '#1e8151', strokeWidth: 5 };
   }),
 
-  connectorStyle: computed(function() {
+  connectorStyle: computed('editable', function() {
     return {
       strokeWidth: 2,
       outlineWidth: 4,
@@ -144,7 +144,7 @@ export default Service.extend({
     };
   }),
 
-  connectorHoverPaintStyle: computed(function() {
+  connectorHoverPaintStyle: computed('editable', function() {
     return {
       strokeWidth: 20,
       outlineWidth: 20,
@@ -153,7 +153,7 @@ export default Service.extend({
     };
   }),
 
-  connectorOverlays: computed(function() {
+  connectorOverlays: computed('editable', function() {
     const arrow = [
       'Arrow', {
         location: 1,
