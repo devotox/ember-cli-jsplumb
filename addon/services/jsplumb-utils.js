@@ -70,7 +70,8 @@ export default Service.extend({
 
     const [elementID, { default: { def: definition } }]
       = Object.entries(elementDefinitions)
-        .find(([, { default: { def: definition = {} } = {}} = {}]) => {
+        .find(([, def]) => {
+          const definition = def && def.default && def.default.def || {};
           return definition.id === id;
         });
 
