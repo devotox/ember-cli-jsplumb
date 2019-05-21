@@ -46,7 +46,6 @@
     "ember-content-editable": "1.0.5",
     "ember-lifeline": "4.1.4",
     "ember-on-modifier": "0.12.3",
-    "ember-paper": "1.0.0-beta.24",
     "ember-resizable": "0.4.2",
     "jsplumb": "2.9.3"
   },
@@ -54,6 +53,7 @@
     "@ember/optional-features": "0.7.0",
     "broccoli-asset-rev": "3.0.0",
     "ember-ace": "2.0.1",
+    "ember-paper": "1.0.0-beta.24",
     "ember-cli": "3.10.1",
     "ember-cli-code-coverage": "0.4.2",
     "ember-cli-dependency-checker": "3.1.0",
