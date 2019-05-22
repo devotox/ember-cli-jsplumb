@@ -15,7 +15,7 @@ import { addObserver, removeObserver } from '@ember/object/observers';
 export default Component.extend(ParentMixin, {
   layout,
 
-  classNames: 'ember-jsplumb',
+  classNames: 'ember-jsplumb layout-column flex',
 
   definition: {}, // eslint-disable-line
 
@@ -41,7 +41,12 @@ export default Component.extend(ParentMixin, {
 
   willDestroyElement() {
     this._super(...arguments);
+    jsPlumb.reset();
+
     this.unbind();
+
+    this.childComponents
+      .forEach((child) => child.unbind());
   },
 
   repaint() {

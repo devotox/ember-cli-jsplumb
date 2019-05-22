@@ -15,7 +15,7 @@ export default Component.extend(ParentMixin, ChildMixin, {
 
   jsplumbUtils: inject(),
 
-  classNames: 'jsplumb-container',
+  classNames: 'jsplumb-container layout-column flex',
 
   didInsertElement() {
     this._super(...arguments);
