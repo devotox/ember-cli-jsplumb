@@ -59,7 +59,9 @@ export default Component.extend(ParentMixin, ChildMixin, {
       };
 
       nodes.pushObject(node);
-      this.onCreateNode && this.onCreateNode(node);
+
+      const onCreate = this.parentComponent.onCreateNode;
+      onCreate && onCreate(node);
     };
 
     jsPlumb.on(this.element, 'dblclick', this.onDblClick);
@@ -84,7 +86,9 @@ export default Component.extend(ParentMixin, ChildMixin, {
       };
 
       edges.pushObject(edge);
-      this.onConnection && this.onConnection(edge);
+
+      const onCreate = this.parentComponent.onCreateEdge;
+      onCreate && onCreate(edge);
     });
 
     jsPlumb.bind('beforeDetach', (info) => {
@@ -95,7 +99,9 @@ export default Component.extend(ParentMixin, ChildMixin, {
       if (!edge) { return false; }
 
       edges.removeObject(edge);
-      this.onConnectionDetached && this.onConnectionDetached(edge);
+
+      const onRemove = this.parentComponent.onRemoveEdge;
+      onRemove && onRemove(edge);
     });
   },
 

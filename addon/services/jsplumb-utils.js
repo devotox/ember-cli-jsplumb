@@ -93,7 +93,7 @@ export default Service.extend({
     });
   },
 
-  editable: true,
+  editable: false,
 
   draggable: false,
 
@@ -180,7 +180,7 @@ export default Service.extend({
     return [ arrow ];
   }),
 
-  contentEditable(edge) {
+  contentEditable(edge, onEditEdge, attributes) {
     const owner = getOwner(this);
 
     const editable = this.get('editable');
@@ -195,7 +195,13 @@ export default Service.extend({
        allowNewlines: false,
        classNames: 'edge-label',
        placeholder: 'Enter Edge Label',
-       'key-up': () => set(edge, 'label', event.target.innerText)
+       'key-up'(){
+         const element = event.target;
+         set(edge, 'label', element.innerText);
+
+         const onEdit = onEditEdge;
+         onEdit && onEdit(edge, element, attributes);
+       }
     });
 
     const div = document.createElement('div');
@@ -206,7 +212,7 @@ export default Service.extend({
     return component;
   },
 
-  setupOverlays(edge = {}) {
+  setupOverlays(edge, onEditEdge, attributes) {
     const [ arrow ] = this.get('connectorOverlays');
 
     const customLabel = [
@@ -214,8 +220,8 @@ export default Service.extend({
         location: 0.5,
         id: 'customOverlay',
         create: () => {
+          const { element } = this.contentEditable(edge, onEditEdge, attributes);
           next(() => this.selectElementContents(element));
-          const { element } = this.contentEditable(edge);
           return element;
         }
       }];
