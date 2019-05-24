@@ -33,7 +33,7 @@ export default Component.extend(ChildMixin, {
 
     const parent = this.parentComponent;
     const onEdit = parent && parent.parentComponent.onEditEdge;
-    const overlays = jsplumbUtils.setupOverlays(edge, onEdit, { source, target});
+    const overlays = jsplumbUtils.setupOverlays(edge, onEdit, { source, target });
 
     if(!source || !target) { return; }
 

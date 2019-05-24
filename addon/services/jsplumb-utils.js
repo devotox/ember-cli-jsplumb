@@ -195,7 +195,7 @@ export default Service.extend({
        allowNewlines: false,
        classNames: 'edge-label',
        placeholder: 'Enter Edge Label',
-       'key-up'(){
+       keyUp(){
          const element = event.target;
          set(edge, 'label', element.innerText);
 
