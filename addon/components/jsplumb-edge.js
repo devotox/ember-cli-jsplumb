@@ -31,7 +31,8 @@ export default Component.extend(ChildMixin, {
     const source = jsplumbUtils.getElement(edge.source);
     const target = jsplumbUtils.getElement(edge.target);
 
-    const onEdit = this.parentComponent.parentComponent.onEditEdge;
+    const parent = this.parentComponent;
+    const onEdit = parent && parent.parentComponent.onEditEdge;
     const overlays = jsplumbUtils.setupOverlays(edge, onEdit, { source, target});
 
     if(!source || !target) { return; }
