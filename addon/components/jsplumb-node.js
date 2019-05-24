@@ -102,7 +102,7 @@ export default Component.extend(ChildMixin, {
       jsPlumb.revalidate(element);
 
       const onResize = this.parentComponent.parentComponent.onResizeNode;
-      onResize && onResize(node, element);
+      onResize && onResize(node, element, { component: this });
     },
     editNode() {
       const node = this.get('node');
@@ -121,7 +121,7 @@ export default Component.extend(ChildMixin, {
       );
 
       const onEdit = this.parentComponent.parentComponent.onEditNode;
-      onEdit && onEdit(node, element, { edges: nodeEdges, connections, definition });
+      onEdit && onEdit(node, element, { component: this, edges: nodeEdges, connections, definition });
     },
     deleteNode() {
       const node = this.get('node');
@@ -135,7 +135,7 @@ export default Component.extend(ChildMixin, {
       jsplumbUtils.removeNode(node, nodes, edges);
 
       const onRemove = this.parentComponent.parentComponent.onRemoveNode;
-      onRemove && onRemove(node, element);
+      onRemove && onRemove(node, element, { component: this });
     }
   }
 });

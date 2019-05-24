@@ -61,7 +61,7 @@ export default Component.extend(ParentMixin, ChildMixin, {
       nodes.pushObject(node);
 
       const onCreate = this.parentComponent.onCreateNode;
-      onCreate && onCreate(node);
+      onCreate && onCreate(node, { component: this });
     };
 
     jsPlumb.on(this.element, 'dblclick', this.onDblClick);
@@ -88,7 +88,7 @@ export default Component.extend(ParentMixin, ChildMixin, {
       edges.pushObject(edge);
 
       const onCreate = this.parentComponent.onCreateEdge;
-      onCreate && onCreate(edge);
+      onCreate && onCreate(edge, { component: this });
     });
 
     jsPlumb.bind('beforeDetach', (info) => {
@@ -101,7 +101,7 @@ export default Component.extend(ParentMixin, ChildMixin, {
       edges.removeObject(edge);
 
       const onRemove = this.parentComponent.onRemoveEdge;
-      onRemove && onRemove(edge);
+      onRemove && onRemove(edge, { component: this });
     });
   },
 
