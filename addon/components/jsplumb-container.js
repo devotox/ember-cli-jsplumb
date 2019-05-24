@@ -51,8 +51,8 @@ export default Component.extend(ParentMixin, ChildMixin, {
 
       const node = {
         id,
-        width: 150,
-        height: 150,
+        width: 110,
+        height: 110,
         top: e.offsetY,
         left: e.offsetX,
         label: 'New Node'
