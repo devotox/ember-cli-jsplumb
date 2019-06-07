@@ -13,7 +13,7 @@ import EmberObject, { computed, set, get } from '@ember/object';
 export default Service.extend({
   jsPlumb,
 
-  removeSelection () {
+  removeSelection() {
     const sel = window.getSelection();
     sel.removeAllRanges();
   },
