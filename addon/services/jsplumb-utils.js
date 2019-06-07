@@ -4,9 +4,9 @@ import { A } from '@ember/array';
 
 import Service from '@ember/service';
 
-import { next, once } from '@ember/runloop';
-
 import { getOwner } from '@ember/application';
+
+import { next, once, later } from '@ember/runloop';
 
 import EmberObject, { computed, set, get } from '@ember/object';
 
@@ -94,7 +94,9 @@ export default Service.extend({
     once(() => {
       set(this, 'hideForRerender', true);
 
-      next(this, () => {
+      later(this, 'removeSelection', 500);
+
+      next(() => {
         set(this, 'hideForRerender', false);
       });
     });

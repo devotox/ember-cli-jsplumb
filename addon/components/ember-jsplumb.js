@@ -1,10 +1,10 @@
 import { jsPlumb } from 'jsplumb';
 
-import { next } from '@ember/runloop';
-
 import { inject } from '@ember/service';
 
 import Component from '@ember/component';
+
+import { next, later } from '@ember/runloop';
 
 import layout from '../templates/components/ember-jsplumb';
 
@@ -29,6 +29,8 @@ export default Component.extend(ParentMixin, ChildMixin, {
     const jsplumbUtils = this.get('jsplumbUtils');
 
     const newDefinition = jsplumbUtils.setupDefinition(definition);
+
+    later(jsplumbUtils, 'removeSelection', 500);
 
     this.set('definition', newDefinition);
   },
