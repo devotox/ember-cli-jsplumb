@@ -6,13 +6,13 @@ import { inject } from '@ember/service';
 
 import Component from '@ember/component';
 
-import { ParentMixin } from 'ember-composability-tools';
-
 import layout from '../templates/components/ember-jsplumb';
+
+import { ParentMixin, ChildMixin } from 'ember-composability-tools';
 
 import { addObserver, removeObserver } from '@ember/object/observers';
 
-export default Component.extend(ParentMixin, {
+export default Component.extend(ParentMixin, ChildMixin, {
   layout,
 
   classNames: 'ember-jsplumb layout-column flex',
