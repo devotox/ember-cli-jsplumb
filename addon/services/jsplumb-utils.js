@@ -11,6 +11,13 @@ import { getOwner } from '@ember/application';
 import EmberObject, { computed, set, get } from '@ember/object';
 
 export default Service.extend({
+  jsPlumb,
+
+  removeSelection () {
+    const sel = window.getSelection();
+    sel.removeAllRanges();
+  },
+
   selectElementContents(element) {
     if (!element) { return; }
 
