@@ -4037,7 +4037,7 @@ ember-cli-requestanimationframe-polyfill@^0.0.1:
     fastboot-transform "^0.1.3"
     raf-polyfill "^1.0.0"
 
-ember-cli-sass@10.0.1, ember-cli-sass@^10.0.0:
+ember-cli-sass@10.0.1, ember-cli-sass@^10.0.1:
   version "10.0.1"
   resolved "https://registry.yarnpkg.com/ember-cli-sass/-/ember-cli-sass-10.0.1.tgz#afa91eb7dfe3890be0390639d66976512e7d8edc"
   integrity sha512-dWVoX03O2Mot1dEB1AN3ofC8DDZb6iU4Kfkbr3WYi9S9bGVHrpR/ngsR7tuVBuTugTyG53FPtLLqYdqx7XjXdA==
@@ -4446,16 +4446,16 @@ ember-qunit@4.4.1:
     ember-cli-test-loader "^2.2.0"
     qunit "^2.9.2"
 
-ember-resizable@0.4.2:
-  version "0.4.2"
-  resolved "https://registry.yarnpkg.com/ember-resizable/-/ember-resizable-0.4.2.tgz#4650750bae3b44cb1128fe3dfda2f3136c61359b"
-  integrity sha512-VUNzVlsW0jkNOxoFPlyYROVQyw00bG4qTCPUgoeBa2jgB2qaVzJgATY1mljlKdHYZVw9eWUGq2xrsxJEK13Yqw==
+ember-resizable@0.4.3:
+  version "0.4.3"
+  resolved "https://registry.yarnpkg.com/ember-resizable/-/ember-resizable-0.4.3.tgz#7697a5ca47efbe9aee87a35c37edb204f6ef63a9"
+  integrity sha512-sG98kxC3p59eE5fikUcDzfrncDkbQNHC3ukU3Iam4qmLfzu7mNxjpFfOdfYykSh9XJ7RYckiSjI17AJOyT+NTw==
   dependencies:
-    ember-cli-babel "^7.1.2"
+    ember-cli-babel "^7.7.3"
     ember-cli-htmlbars "^3.0.1"
-    ember-cli-sass "^10.0.0"
+    ember-cli-sass "^10.0.1"
     ember-decorators "^6.0.0"
-    sass "^1.17.0"
+    sass "^1.21.0"
 
 ember-resolver@5.1.3:
   version "5.1.3"
@@ -9096,7 +9096,7 @@ sass-graph@^2.2.4:
     scss-tokenizer "^0.2.3"
     yargs "^7.0.0"
 
-sass@1.21.0, sass@^1.17.0:
+sass@1.21.0, sass@^1.21.0:
   version "1.21.0"
   resolved "https://registry.yarnpkg.com/sass/-/sass-1.21.0.tgz#cc565444e27c2336746b09c45d6e8c46caaf6b04"
   integrity sha512-67hIIOZZtarbhI2aSgKBPDUgn+VqetduKoD+ZSYeIWg+ksNioTzeX+R2gUdebDoolvKNsQ/GY9NDxctbXluTNA==
