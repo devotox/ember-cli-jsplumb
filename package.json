@@ -44,7 +44,7 @@
     "ember-cli-htmlbars-inline-precompile": "2.1.0",
     "ember-cli-sass": "10.0.1",
     "ember-content-editable": "1.0.5",
-    "ember-lifeline": "4.1.4",
+    "ember-lifeline": "4.1.5",
     "ember-on-modifier": "0.12.4",
     "ember-resizable": "0.4.3",
     "jsplumb": "2.10.1"
