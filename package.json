@@ -47,7 +47,7 @@
     "ember-lifeline": "4.1.5",
     "ember-on-modifier": "1.0.0",
     "ember-resizable": "0.4.3",
-    "jsplumb": "2.10.2"
+    "jsplumb": "2.11.1"
   },
   "devDependencies": {
     "@ember/optional-features": "0.7.0",
