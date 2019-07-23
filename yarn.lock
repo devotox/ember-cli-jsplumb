@@ -4143,7 +4143,7 @@ ember-cli-htmlbars-inline-precompile@2.1.0, ember-cli-htmlbars-inline-precompile
     heimdalljs-logger "^0.1.9"
     silent-error "^1.1.0"
 
-ember-cli-htmlbars@3.1.0, ember-cli-htmlbars@^3.0.0, ember-cli-htmlbars@^3.0.1:
+ember-cli-htmlbars@3.1.0, ember-cli-htmlbars@^3.0.0, ember-cli-htmlbars@^3.0.1, ember-cli-htmlbars@^3.1.0:
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/ember-cli-htmlbars/-/ember-cli-htmlbars-3.1.0.tgz#87806c2a0bca2ab52d4fb8af8e2215c1ca718a99"
   integrity sha512-cgvRJM73IT0aePUG7oQ/afB7vSRBV3N0wu9BrWhHX2zkR7A7cUBI7KC9VPk6tbctCXoM7BRGsCC4aIjF7yrfXA==
@@ -4644,16 +4644,16 @@ ember-qunit@4.4.1:
     ember-cli-test-loader "^2.2.0"
     qunit "^2.9.2"
 
-ember-resizable@0.4.3:
-  version "0.4.3"
-  resolved "https://registry.yarnpkg.com/ember-resizable/-/ember-resizable-0.4.3.tgz#7697a5ca47efbe9aee87a35c37edb204f6ef63a9"
-  integrity sha512-sG98kxC3p59eE5fikUcDzfrncDkbQNHC3ukU3Iam4qmLfzu7mNxjpFfOdfYykSh9XJ7RYckiSjI17AJOyT+NTw==
+ember-resizable@0.4.4:
+  version "0.4.4"
+  resolved "https://registry.yarnpkg.com/ember-resizable/-/ember-resizable-0.4.4.tgz#381d3431599696beadcea62aa62f875d050a323f"
+  integrity sha512-bNd2ankp5zsImEuKn4Fu06Q3orrga0JEr3lj6KLv5dVW3WlNH80AHF9fwyV1wugojtVmrURMWat/w9Wbs0BeNg==
   dependencies:
-    ember-cli-babel "^7.7.3"
-    ember-cli-htmlbars "^3.0.1"
+    ember-cli-babel "^7.8.0"
+    ember-cli-htmlbars "^3.1.0"
     ember-cli-sass "^10.0.1"
     ember-decorators "^6.0.0"
-    sass "^1.21.0"
+    sass "^1.22.7"
 
 ember-resolver@5.1.3:
   version "5.1.3"
@@ -9236,7 +9236,7 @@ sass-graph@^2.2.4:
     scss-tokenizer "^0.2.3"
     yargs "^7.0.0"
 
-sass@1.22.7, sass@^1.21.0:
+sass@1.22.7, sass@^1.22.7:
   version "1.22.7"
   resolved "https://registry.yarnpkg.com/sass/-/sass-1.22.7.tgz#5a1a77dc11aa659db4e782d238bf9f3d44a60546"
   integrity sha512-ahREi0AdG7RTovSv14+yd1prQSfIvFcrDpOsth5EQf1+RM7SvOxsSttzNQaFmK1aa/k/3vyYwlYF5l0Xl+6c+g==
