@@ -7085,10 +7085,10 @@ jsonify@~0.0.0:
   resolved "https://registry.yarnpkg.com/jsonify/-/jsonify-0.0.0.tgz#2c74b6ee41d93ca51b7b5aaee8f503631d252a73"
   integrity sha1-LHS27kHZPKUbe1qu6PUDYx0lKnM=
 
-jsplumb@2.11.1:
-  version "2.11.1"
-  resolved "https://registry.yarnpkg.com/jsplumb/-/jsplumb-2.11.1.tgz#63596545ba94b72f16cee3eaca2e35656dc1eea8"
-  integrity sha512-8sXC1zvwkO93ZkdKhSYBqJgAeMusQvgO76q8DQkVlS8DVm08s6x6RR8wJDnQypnCb+q/lo8eUyJI8clEVERjfw==
+jsplumb@2.11.2:
+  version "2.11.2"
+  resolved "https://registry.yarnpkg.com/jsplumb/-/jsplumb-2.11.2.tgz#f8de737ea4b2551ebd95ca4b57dc096c3833e7dd"
+  integrity sha512-GyZE8l2JeZ0haOzHhsgykD8k1j5st1v2nNWaNNMqmRmGU43iuP9iBDAXDxmGNPp1t+4W++sT1SkbI8754YMtIg==
 
 jsprim@^1.2.2:
   version "1.4.1"
