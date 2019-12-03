@@ -46,7 +46,7 @@
     "ember-content-editable": "1.0.5",
     "ember-lifeline": "4.1.5",
     "ember-on-modifier": "1.0.0",
-    "ember-resizable": "0.4.5",
+    "ember-resizable": "0.4.6",
     "jsplumb": "2.12.7"
   },
   "devDependencies": {
